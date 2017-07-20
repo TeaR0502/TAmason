@@ -20,12 +20,16 @@
 			<form id="loginForm" method="post" action="#">
 				<table>
 					<tr>
+						<td class="field">&nbsp;&nbsp;</td>
+						<td><span id ="result"></span></td>
+					</tr>
+					<tr>
 						<td class="field">用户名：</td>
-						<td><input class="text" type="text" id="userName"  /><span id ="usernamespan"></span></td>
+						<td>&nbsp;&nbsp;<input class="text" type="text" id="userName"  /><span id ="usernamespan"></span></td>
 					</tr>
 					<tr>
 						<td class="field">登录密码：</td>
-						<td><input class="text" type="password" id="passWord" /><a href="retrieve_password.jsp">忘记密码</a><span id ="passWordspan"></span></td>
+						<td>&nbsp;&nbsp;<input class="text" type="password" id="passWord" /><a href="retrieve_password.jsp">忘记密码</a><span id ="passWordspan"></span></td>
 		
 					</tr>
 					<tr>

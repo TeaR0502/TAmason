@@ -2,9 +2,38 @@
 $(function(){
 		
 		
-
+		//登录功能!2017.7.20 19:18
 		$("#submitbutten").click(function(){
-			alert("123");
+			//
+			$.ajax({
+				url:"loginServlet",
+				data:{"username":$("#userName").val(),"password":$("#passWord").val()},
+				type:"post",
+				dataType:"html",
+				success:function(data){
+						if (data == 0){
+							$("#result").html("登陆成功!5秒后自动转跳到<a href='index.jsp'>主页<a>!");
+							$("#result").css({"color":"green"});
+							$("#result").show(1000);
+							setTimeout(window.location.href='index.jsp',5000);
+						} else if (data == 1){
+							$("#result").html("密码错误!请确认!");
+							$("#result").css({"color":"red"});
+							$("#result").show(1000);
+						} else if (data == 2){
+							$("#result").html("无此用户,请确认账号!或<a href='register.jsp'>注册<a>新会员!");
+							$("#result").css({"color":"red"});
+							$("#result").show(1000);
+						} else{
+							alert("数据异常");
+						}
+						 
+				},
+				error:function(){
+					alert("请求数据失败!");
+				}
+			});
+			//
 		});		
 		
 		//点击验证码输入框显示提示
@@ -25,12 +54,12 @@ $(function(){
 							$("#veryCodespan").css({"color":"green"});
 							$("#veryCodespan").show(1000);
 						} else{
-							alert("数据异常");
+							alert("请刷新页面!");
 						}
 						 
 				},
 				error:function(){
-					alert("请求数据失败!");
+					alert("请刷新页面!");
 				}
 			})
 			//
@@ -62,7 +91,7 @@ $(function(){
 						}
 				},
 				error:function(){
-					alert("请求数据失败!");
+					alert("请刷新页面!");
 				}
 			})
 				//

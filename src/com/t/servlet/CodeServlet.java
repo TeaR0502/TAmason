@@ -38,8 +38,8 @@ public class CodeServlet extends HttpServlet{
 		String  code = (String) session.getAttribute("validateCode");
 
 		String userCode = req.getParameter("code");
-		System.out.println("生成的验证码"+code);
-		System.out.println("用户输入的验证码"+userCode);
+		//System.out.println("生成的验证码"+code);
+		//System.out.println("用户输入的验证码"+userCode);
 		Integer status = -1;
 		if (code.equals(userCode)) {
 			status = 0;//通过验证
