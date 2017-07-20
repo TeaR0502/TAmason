@@ -7,13 +7,14 @@
 <div id="header" class="wrap">
 	<div id="logo"><img src="images/logo.gif" /></div>
 	
-	<div class="help"><a href="#" class="shopping">购物车</a><a href="login.html">登录</a><a href="register.html">注册</a><a href="#">留言</a></div>
+	<div class="help"><a href="#" class="shopping">购物车</a><a href="login.jsp">登录</a><a href="register.jsp">注册</a><a href="#">留言</a></div>
 		
 	<div class="navbar">
 		<ul class="clearfix">
 			<li><a href="#">首页</a></li>
 			
 			<li><a href="#">商品名称</a></li>
+			<li><a href="#">我来试试看变得很长很长之后会变成什么样子</a></li>
 			
 		</ul>
 	</div>

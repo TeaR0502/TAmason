@@ -1,9 +1,9 @@
---Ôö¼Ó¸ÃÏµÍ³µÄÓÃ»§²¢ÊÚÈ¨
+--å¢åŠ è¯¥ç³»ç»Ÿçš„ç”¨æˆ·å¹¶æˆæƒ
 CREATE USER TAmason IDENTIFIED BY 123456;
 GRANT CONNECT,RESOURCE TO TAmason;
---ÇĞ»»µ½¸ÃÓÃ»§
+--åˆ‡æ¢åˆ°è¯¥ç”¨æˆ·
 CONN TAmason/123456;
---Ôö¼ÓËùĞèÒªµÄĞòÁĞ
+--å¢åŠ æ‰€éœ€è¦çš„åºåˆ—
 CREATE SEQUENCE SEQ_USER_ID INCREMENT BY 1 START WITH 1000;
 CREATE SEQUENCE SEQ_COMMENT_ID INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_NEWS_ID INCREMENT BY 1 START WITH 1;
@@ -13,217 +13,217 @@ CREATE SEQUENCE SEQ_PRODUCT_ID INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_DETAIL_ID INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_CART_ID INCREMENT BY 1 START WITH 1;
 
---´´½¨ÓÃ»§±í
+--åˆ›å»ºç”¨æˆ·è¡¨
 create table TUSER
 (
-  ID            NUMBER(10) CONSTRAINT TUSER_ID_PK  PRIMARY KEY,--ÓÃ»§id
-  USERNAME      VARCHAR2(20) not null,--ÓÃ»§Ãû
-  PASSWORD      VARCHAR2(20) not null,-- ÃÜÂë
-  SEX           VARCHAR2(4) not null,--ĞÔ±ğ
-  BIRTHDAY      DATE,--ÉúÈÕ
-  IDENTITY_CODE VARCHAR2(60),--ÑéÖ¤Âë
-  EMAIL         VARCHAR2(80),--ÓÊÏä
-  MOBILE        VARCHAR2(11),--ÊÖ»ú
-  ADDRESS       VARCHAR2(200) not null,--µØÖ·
-  STATUS        NUMBER(6) not null--×´Ì¬
-)
+  ID            NUMBER(10) CONSTRAINT TUSER_ID_PK  PRIMARY KEY,--ç”¨æˆ·id
+  USERNAME      VARCHAR2(20) not null,--ç”¨æˆ·å
+  PASSWORD      VARCHAR2(20) not null,-- å¯†ç 
+  SEX           VARCHAR2(4) not null,--æ€§åˆ«
+  BIRTHDAY      DATE,--ç”Ÿæ—¥
+  IDENTITY_CODE VARCHAR2(60),--éªŒè¯ç 
+  EMAIL         VARCHAR2(80),--é‚®ç®±
+  MOBILE        VARCHAR2(11),--æ‰‹æœº
+  ADDRESS       VARCHAR2(200) not null,--åœ°å€
+  STATUS        NUMBER(6) not null--çŠ¶æ€
+);
 
---´´½¨ÆÀÂÛ±í
+--åˆ›å»ºè¯„è®ºè¡¨
 create table TCOMMENT
 (
-  ID          NUMBER(10) CONSTRAINT TCOMMENT_ID_PK  PRIMARY KEY,--ÆÀÂÛid
-  REPLY       VARCHAR2(200),--»Ø¸´
-  CONTENT     VARCHAR2(200) not null,--ÆÀÂÛ
-  CREATE_TIME DATE not null,--ÆÀÂÛÊ±¼ä
-  NICK_NAME   VARCHAR2(50) not null--êÇ³Æ
-)
---´´½¨ĞÂÎÅ±í
+  ID          NUMBER(10) CONSTRAINT TCOMMENT_ID_PK  PRIMARY KEY,--è¯„è®ºid
+  REPLY       VARCHAR2(200),--å›å¤
+  CONTENT     VARCHAR2(200) not null,--è¯„è®º
+  CREATE_TIME DATE not null,--è¯„è®ºæ—¶é—´
+  NICK_NAME   VARCHAR2(50) not null--æ˜µç§°
+);
+--åˆ›å»ºæ–°é—»è¡¨
 create table TNEWS
 (
-  ID          NUMBER(10)  CONSTRAINT TNEWS_ID_PK   PRIMARY KEY,--ĞÂÎÅid
-  TITLE       VARCHAR2(80) not null,--±êÌâ
-  CONTENT     VARCHAR2(1000) not null,--ÄÚÈİ
-  CREATE_TIME DATE not null--Ôö¼ÓÊ±¼ä
-)
---¶©µ¥±í
+  ID          NUMBER(10)  CONSTRAINT TNEWS_ID_PK   PRIMARY KEY,--æ–°é—»id
+  TITLE       VARCHAR2(80) not null,--æ ‡é¢˜
+  CONTENT     VARCHAR2(1000) not null,--å†…å®¹
+  CREATE_TIME DATE not null--å¢åŠ æ—¶é—´
+);
+--è®¢å•è¡¨
 create table TORDER
 (
-  ID           NUMBER(10)   CONSTRAINT TORDER_ID_PK  PRIMARY KEY,--¶©µ¥id
-  USER_ID      NUMBER(10),--ÓÃ»§ID
-  USER_NAME    VARCHAR2(50) not null,--ÓÃ»§Ãû
-  USER_ADDRESS VARCHAR2(200) not null,--ÓÃ»§µØÖ·
-  CREATE_TIME  DATE not null,--Ôö¼ÓÊ±¼ä
-  COST         NUMBER(10,2) not null,--¶«µ¥½ğ¶î
-  STATUS       NUMBER(6) not null,--¶©µ¥×´Ì¬
+  ID           NUMBER(10)   CONSTRAINT TORDER_ID_PK  PRIMARY KEY,--è®¢å•id
+  USER_ID      NUMBER(10),--ç”¨æˆ·ID
+  USER_NAME    VARCHAR2(50) not null,--ç”¨æˆ·å
+  USER_ADDRESS VARCHAR2(200) not null,--ç”¨æˆ·åœ°å€
+  CREATE_TIME  DATE not null,--å¢åŠ æ—¶é—´
+  COST         NUMBER(10,2) not null,--ä¸œå•é‡‘é¢
+  STATUS       NUMBER(6) not null,--è®¢å•çŠ¶æ€
   ORDER_TYPE   NUMBER(6) not null,--????
   constraint USER_ID_FK foreign key(USER_ID) references TUSER(ID)
-)
---ÉÌÆ·Àà±ğ±í
+);
+--å•†å“ç±»åˆ«è¡¨
 create table TPRODUCT_CATEGORY
 (
-  ID        NUMBER(10)   CONSTRAINT TPRODUCT_CATEGORY_ID_PK   PRIMARY KEY,--ÉÌÆ·Àà±ğid
-  NAME      VARCHAR2(50) not null,--ÉÌÆ·Àà±ğÃû³Æ
-  PARENT_ID NUMBER(10) not null--¸¸ÀàID,Èç¹ûÎª0ÔòÎª¸ùÄ¿Â¼
-)
---ÉÌÆ·±í
+  ID        NUMBER(10)   CONSTRAINT TPRODUCT_CATEGORY_ID_PK   PRIMARY KEY,--å•†å“ç±»åˆ«id
+  NAME      VARCHAR2(50) not null,--å•†å“ç±»åˆ«åç§°
+  PARENT_ID NUMBER(10) not null--çˆ¶ç±»ID,å¦‚æœä¸º0åˆ™ä¸ºæ ¹ç›®å½•
+);
+--å•†å“è¡¨
 create table TPRODUCT
 (
-  ID          NUMBER(10)   CONSTRAINT TPRODUCT_ID_PK  PRIMARY KEY,--ÉÌÆ·id
-  NAME        VARCHAR2(50) not null,--ÉÌÆ·Ãû³Æ
-  DESCRIPTION VARCHAR2(100),--ÉÌÆ·ÃèÊö
-  PRICE       NUMBER(10,2) not null,--¼Û¸ñ
-  STOCK       NUMBER(10) not null,--¿â´æ
-  PARENT_ID   NUMBER(10) ,--¸¸ÀàID
-  CHILD_ID    NUMBER(10) ,--×ÓÀàID
-  PICTUREFILE_NAME   VARCHAR2(200) not null,--Í¼Æ¬
+  ID          NUMBER(10)   CONSTRAINT TPRODUCT_ID_PK  PRIMARY KEY,--å•†å“id
+  NAME        VARCHAR2(50) not null,--å•†å“åç§°
+  DESCRIPTION VARCHAR2(100),--å•†å“æè¿°
+  PRICE       NUMBER(10,2) not null,--ä»·æ ¼
+  STOCK       NUMBER(10) not null,--åº“å­˜
+  PARENT_ID   NUMBER(10) ,--çˆ¶ç±»ID
+  CHILD_ID    NUMBER(10) ,--å­ç±»ID
+  PICTUREFILE_NAME   VARCHAR2(200) not null,--å›¾ç‰‡
   constraint PARENT_ID_ID_FK foreign key (PARENT_ID) references TPRODUCT_CATEGORY (ID),
   constraint CHILD_ID_FK foreign key (CHILD_ID) references TPRODUCT_CATEGORY (ID)
-)
---¶©µ¥ÏêÇé±í
+);
+--è®¢å•è¯¦æƒ…è¡¨
 create table ORDER_DETAIL
 (
-  ID       NUMBER(10)  CONSTRAINT ORDER_DETAIL_ID_PK PRIMARY KEY,--¶©µ¥ÏêÇé±àºÅ
-  ORDER_ID        NUMBER(10),--¶©µ¥±àºÅ
-  PRODUCT_ID        NUMBER(10),--ÉÌÆ·±àºÅ
-  QUANTITY NUMBER(10) not null,--ÉÌÆ·ÊıÁ¿
-  COST     NUMBER(10,2) not null,--×Ü½ğ¶î
+  ID       NUMBER(10)  CONSTRAINT ORDER_DETAIL_ID_PK PRIMARY KEY,--è®¢å•è¯¦æƒ…ç¼–å·
+  ORDER_ID        NUMBER(10),--è®¢å•ç¼–å·
+  PRODUCT_ID        NUMBER(10),--å•†å“ç¼–å·
+  QUANTITY NUMBER(10) not null,--å•†å“æ•°é‡
+  COST     NUMBER(10,2) not null,--æ€»é‡‘é¢
   constraint ORDER_ID_FK foreign key (ORDER_ID) references TORDER(ID),
   constraint PRODUCT_ID_FK foreign key (PRODUCT_ID) references TPRODUCT(ID)
-)
---¹ºÎï³µ
+);
+--è´­ç‰©è½¦
 CREATE TABLE CART 
-   (ID NUMBER(10) CONSTRAINT CART_ID_PK PRIMARY KEY, --¹ºÎï³µid
-	PRODUCT_ID NUMBER(10), --ÉÌÆ·ID
-	QUANTITY NUMBER(10), --ÉÌÆ·ÊıÁ¿
-	USERID NUMBER(10)--ÓÃ»§ID
-   )
+   (ID NUMBER(10) CONSTRAINT CART_ID_PK PRIMARY KEY, --è´­ç‰©è½¦id
+	PRODUCT_ID NUMBER(10), --å•†å“ID
+	QUANTITY NUMBER(10), --å•†å“æ•°é‡
+	USERID NUMBER(10)--ç”¨æˆ·ID
+   );
 
- --²åÈëÓÃ»§±í²âÊÔÊı¾İ
-insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'Öìçù', '1234', 'Å®', to_date('02-07-1989', 'dd-mm-yyyy'), '500235198907026299', 'sa@sina.com', '13011092066', 'ÖØÇì', 1);
-insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'ÖìÀÅ', '1234', 'ÄĞ', to_date('02-07-1988', 'dd-mm-yyyy'), '500235198907026299', 'sa@sina.com', '13011092066', 'ÖØÇì', 1);
-insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'µóĞÇ³½', '1234', 'ÄĞ', to_date('02-09-1990', 'dd-mm-yyyy'), '123123123123123', 'web@sohu.com', '12312312312', '¶«±±', 1);
-insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'Áõ²©', '1234', 'Å®', to_date('02-07-1988', 'dd-mm-yyyy'), '500235198907026299', 'sa@sina.com', '13011092066', '±±¾©', 1);
-insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'admin', '1234', 'Å®', to_date('02-07-1988', 'dd-mm-yyyy'), '12345678912345612X', 'sa@sina.com', '13011092066', 'ÉÏº£', 1);
+ --æ’å…¥ç”¨æˆ·è¡¨æµ‹è¯•æ•°æ®
+insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'æœ±ç¦', '1234', 'å¥³', to_date('02-07-1989', 'dd-mm-yyyy'), '500235198907026299', 'sa@sina.com', '13011092066', 'é‡åº†', 1);
+insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'æœ±ç…', '1234', 'ç”·', to_date('02-07-1988', 'dd-mm-yyyy'), '500235198907026299', 'sa@sina.com', '13011092066', 'é‡åº†', 1);
+insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'åˆæ˜Ÿè¾°', '1234', 'ç”·', to_date('02-09-1990', 'dd-mm-yyyy'), '123123123123123', 'web@sohu.com', '12312312312', 'ä¸œåŒ—', 1);
+insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'åˆ˜åš', '1234', 'å¥³', to_date('02-07-1988', 'dd-mm-yyyy'), '500235198907026299', 'sa@sina.com', '13011092066', 'åŒ—äº¬', 1);
+insert into TUSER values (SEQ_USER_ID.NEXTVAL, 'admin', '1234', 'å¥³', to_date('02-07-1988', 'dd-mm-yyyy'), '12345678912345612X', 'sa@sina.com', '13011092066', 'ä¸Šæµ·', 1);
 
---²åÈëÆÀÂÛÊı¾İ
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, '×îĞÂ¿áî£±Ê¼Ç±¾', 'i7³¬Ç¿ÅäÖÃ£¬¸Ï¿ìÏÂÊÖÀ²!', to_date('08-03-2012 20:56:57', 'dd-mm-yyyy hh24:mi:ss'), 'ÌìÌì');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'ÍÅ¹ºÎŞÓÇ', 'ÍÅ¹ºÉÏÀ­ÊÖÀ­ÊÖÉÏÍÅ¹º', to_date('08-03-2012 20:56:57','dd-mm-yyyy hh24:mi:ss'),'À­ÊÖ');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, '»áÔ±ÌØ»İÔÂ¿ªÊ¼', '»ı·Ö´ó·µÀû£¬»ú²»¿ÉÊ§Ê§²»ÔÙÀ´!', to_date('08-03-2012 20:56:57', 'dd-mm-yyyy hh24:mi:ss'),'»áÔ±');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, '¼ÓÈë»áÔ±£¬Ó®Ç§Íò´óÀñ°ü', 'ÎÒÊÇ»áÔ±ÎÒ¿ìÀÖÀ²À²À²À²À²', to_date('09-03-2012 16:49:14', 'dd-mm-yyyy hh24:mi:ss'),'ÎÒÊÇÉñ');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'Ó®Ë«µ©´ÙÏú´ó³ê±ö', 'Ôªµ©Ê¥µ®³¬¼¶´óÀñ°üµÈÄãÄÃÀ²', to_date('09-03-2012 16:50:17', 'dd-mm-yyyy hh24:mi:ss'), 'Ë«µ°',);
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'ĞÂÄê²»Ò¹ÏÄ£¬Í¨ÏüÒ²ÊÇ¿ªÕÅÀ²', 'ĞÂÄê²»Ò¹ÏÄ£¬Í¨ÏüÒ²ÊÇ¿ªÕÅÀ²', to_date('09-03-2012 16:53:11', 'dd-mm-yyyy hh24:mi:ss'),'ĞÂÄê');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, '»ı·Ö¶Ò»»¿ªÊ¼ÁË', '»ı·Ö¶Ò»»¿ªÊ¼ÁË»ı·Ö¶Ò»»¿ªÊ¼ÁË»ı·Ö¶Ò»»¿ªÊ¼ÁË',to_date('09-03-2012 16:55:50', 'dd-mm-yyyy hh24:mi:ss'),'¶Ò»»');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'Åä»õÍ¨Öª', '¿ªÊ¼Åä»õ¿ªÊ¼Åä»õ¿ªÊ¼Åä»õ¿ªÊ¼Åä»õ!',to_date('10-03-2012 16:56:50', 'dd-mm-yyyy hh24:mi:ss'),'Åä»õ');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'ÍÅ¹º°¢µÏ1ÕÛÆğ', 'ÍÅ¹º°¢µÏ1ÕÛÆğÍÅ¹º°¢µÏ1ÕÛÆğÍÅ¹º°¢µÏ1ÕÛÆğ!',to_date('10-03-2012 16:54:11', 'dd-mm-yyyy hh24:mi:ss'),'ÍÅ¹º');
-insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, '·½±ã', '°¢Ê²¶Ù', to_date('21-03-2012 09:22:04', 'dd-mm-yyyy hh24:mi:ss'),'·É·É');
+--æ’å…¥è¯„è®ºæ•°æ®
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'æœ€æ–°é…·ç¿ç¬”è®°æœ¬', 'i7è¶…å¼ºé…ç½®ï¼Œèµ¶å¿«ä¸‹æ‰‹å•¦!', to_date('08-03-2012 20:56:57', 'dd-mm-yyyy hh24:mi:ss'), 'å¤©å¤©');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'å›¢è´­æ— å¿§', 'å›¢è´­ä¸Šæ‹‰æ‰‹æ‹‰æ‰‹ä¸Šå›¢è´­', to_date('08-03-2012 20:56:57','dd-mm-yyyy hh24:mi:ss'),'æ‹‰æ‰‹');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'ä¼šå‘˜ç‰¹æƒ æœˆå¼€å§‹', 'ç§¯åˆ†å¤§è¿”åˆ©ï¼Œæœºä¸å¯å¤±å¤±ä¸å†æ¥!', to_date('08-03-2012 20:56:57', 'dd-mm-yyyy hh24:mi:ss'),'ä¼šå‘˜');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'åŠ å…¥ä¼šå‘˜ï¼Œèµ¢åƒä¸‡å¤§ç¤¼åŒ…', 'æˆ‘æ˜¯ä¼šå‘˜æˆ‘å¿«ä¹å•¦å•¦å•¦å•¦å•¦', to_date('09-03-2012 16:49:14', 'dd-mm-yyyy hh24:mi:ss'),'æˆ‘æ˜¯ç¥');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'èµ¢åŒæ—¦ä¿ƒé”€å¤§é…¬å®¾', 'å…ƒæ—¦åœ£è¯è¶…çº§å¤§ç¤¼åŒ…ç­‰ä½ æ‹¿å•¦', to_date('09-03-2012 16:50:17', 'dd-mm-yyyy hh24:mi:ss'), 'åŒè›‹',);
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'æ–°å¹´ä¸å¤œå¤ï¼Œé€šå®µä¹Ÿæ˜¯å¼€å¼ å•¦', 'æ–°å¹´ä¸å¤œå¤ï¼Œé€šå®µä¹Ÿæ˜¯å¼€å¼ å•¦', to_date('09-03-2012 16:53:11', 'dd-mm-yyyy hh24:mi:ss'),'æ–°å¹´');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'ç§¯åˆ†å…‘æ¢å¼€å§‹äº†', 'ç§¯åˆ†å…‘æ¢å¼€å§‹äº†ç§¯åˆ†å…‘æ¢å¼€å§‹äº†ç§¯åˆ†å…‘æ¢å¼€å§‹äº†',to_date('09-03-2012 16:55:50', 'dd-mm-yyyy hh24:mi:ss'),'å…‘æ¢');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'é…è´§é€šçŸ¥', 'å¼€å§‹é…è´§å¼€å§‹é…è´§å¼€å§‹é…è´§å¼€å§‹é…è´§!',to_date('10-03-2012 16:56:50', 'dd-mm-yyyy hh24:mi:ss'),'é…è´§');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'å›¢è´­é˜¿è¿ª1æŠ˜èµ·', 'å›¢è´­é˜¿è¿ª1æŠ˜èµ·å›¢è´­é˜¿è¿ª1æŠ˜èµ·å›¢è´­é˜¿è¿ª1æŠ˜èµ·!',to_date('10-03-2012 16:54:11', 'dd-mm-yyyy hh24:mi:ss'),'å›¢è´­');
+insert into TCOMMENT values (SEQ_COMMENT_ID.NEXTVAL, 'æ–¹ä¾¿', 'é˜¿ä»€é¡¿', to_date('21-03-2012 09:22:04', 'dd-mm-yyyy hh24:mi:ss'),'é£é£');
 
---²åÈëĞÂÎÅ
-insert into TNEWS values (SEQ_NEWS_ID.nextval, '»áÔ±ÌØ»İÔÂ¿ªÊ¼', '»ı·Ö´ó·µÀû£¬»ú²»¿ÉÊ§Ê§²»ÔÙÀ´!', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
-insert into TNEWS values (SEQ_NEWS_ID.nextval, '¼ÓÈë»áÔ±£¬Ó®Ç§Íò´óÀñ°ü', 'ÎÒÊÇ»áÔ±ÎÒ¿ìÀÖÀ²À²À²À²À²', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
-insert into TNEWS values (SEQ_NEWS_ID.nextval, '»ı·Ö¶Ò»»¿ªÊ¼ÁË', '»ı·Ö¶Ò»»¿ªÊ¼ÁË»ı·Ö¶Ò»»¿ªÊ¼ÁË»ı·Ö¶Ò»»¿ªÊ¼ÁË', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
-insert into TNEWS values (SEQ_NEWS_ID.nextval, 'Åä»õÍ¨Öª', '¿ªÊ¼Åä»õ¿ªÊ¼Åä»õ¿ªÊ¼Åä»õ¿ªÊ¼Åä»õ!', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
-insert into TNEWS values (SEQ_NEWS_ID.nextval, 'ÍÅ¹º°¢µÏ1ÕÛÆğ', 'ÍÅ¹º°¢µÏ1ÕÛÆğÍÅ¹º°¢µÏ1ÕÛÆğÍÅ¹º°¢µÏ1ÕÛÆğ£¡', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
-insert into TNEWS values (SEQ_NEWS_ID.nextval, '»ãÔ´¹ûÖ­´óË¦Âô', 'Ë¦ÂôË¦ÂôË¦ÂôË¦ÂôË¦ÂôË¦Âô', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
-insert into TNEWS values (SEQ_NEWS_ID.nextval, 'Æ»¹ûÊÖ»ú²»ÒªÇ®', '²»Òª²»ÒªÇ®²»ÒªÇ®²»ÒªÇ®²»ÒªÇ®', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
+--æ’å…¥æ–°é—»
+insert into TNEWS values (SEQ_NEWS_ID.nextval, 'ä¼šå‘˜ç‰¹æƒ æœˆå¼€å§‹', 'ç§¯åˆ†å¤§è¿”åˆ©ï¼Œæœºä¸å¯å¤±å¤±ä¸å†æ¥!', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into TNEWS values (SEQ_NEWS_ID.nextval, 'åŠ å…¥ä¼šå‘˜ï¼Œèµ¢åƒä¸‡å¤§ç¤¼åŒ…', 'æˆ‘æ˜¯ä¼šå‘˜æˆ‘å¿«ä¹å•¦å•¦å•¦å•¦å•¦', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into TNEWS values (SEQ_NEWS_ID.nextval, 'ç§¯åˆ†å…‘æ¢å¼€å§‹äº†', 'ç§¯åˆ†å…‘æ¢å¼€å§‹äº†ç§¯åˆ†å…‘æ¢å¼€å§‹äº†ç§¯åˆ†å…‘æ¢å¼€å§‹äº†', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into TNEWS values (SEQ_NEWS_ID.nextval, 'é…è´§é€šçŸ¥', 'å¼€å§‹é…è´§å¼€å§‹é…è´§å¼€å§‹é…è´§å¼€å§‹é…è´§!', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into TNEWS values (SEQ_NEWS_ID.nextval, 'å›¢è´­é˜¿è¿ª1æŠ˜èµ·', 'å›¢è´­é˜¿è¿ª1æŠ˜èµ·å›¢è´­é˜¿è¿ª1æŠ˜èµ·å›¢è´­é˜¿è¿ª1æŠ˜èµ·ï¼', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into TNEWS values (SEQ_NEWS_ID.nextval, 'æ±‡æºæœæ±å¤§ç”©å–', 'ç”©å–ç”©å–ç”©å–ç”©å–ç”©å–ç”©å–', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
+insert into TNEWS values (SEQ_NEWS_ID.nextval, 'è‹¹æœæ‰‹æœºä¸è¦é’±', 'ä¸è¦ä¸è¦é’±ä¸è¦é’±ä¸è¦é’±ä¸è¦é’±', to_date('08-03-2012 20:56:52', 'dd-mm-yyyy hh24:mi:ss'));
 
---²åÈë¶©µ¥ĞÅÏ¢
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1004', 'admin', 'ÖØÇì', to_date('19-03-2012 11:18:52', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('20-03-2012 23:25:31', 'dd-mm-yyyy hh24:mi:ss'), 22191, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1001', 'ÖìÀÅ', 'ÖØÇì', to_date('19-03-2012 11:18:53', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('19-03-2012 11:18:54', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('19-03-2012 11:18:55', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('19-03-2012 11:18:55', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('19-03-2012 11:18:56', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('19-03-2012 11:18:57', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('19-03-2012 11:18:58', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
-insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'Öìçù', 'ÖØÇì', to_date('19-03-2012 11:18:59', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+--æ’å…¥è®¢å•ä¿¡æ¯
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1004', 'admin', 'é‡åº†', to_date('19-03-2012 11:18:52', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('20-03-2012 23:25:31', 'dd-mm-yyyy hh24:mi:ss'), 22191, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1001', 'æœ±ç…', 'é‡åº†', to_date('19-03-2012 11:18:53', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('19-03-2012 11:18:54', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('19-03-2012 11:18:55', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('19-03-2012 11:18:55', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('19-03-2012 11:18:56', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('19-03-2012 11:18:57', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('19-03-2012 11:18:58', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
+insert into TORDER values (SEQ_ORDER_ID.NEXTVAL, '1000', 'æœ±ç¦', 'é‡åº†', to_date('19-03-2012 11:18:59', 'dd-mm-yyyy hh24:mi:ss'), 100, 1, 1);
 
 
---²åÈë²úÆ··ÖÀàĞÅÏ¢
-insert into TPRODUCT_CATEGORY values (19, '·şÊÎ', 2);
-insert into TPRODUCT_CATEGORY values (21, 'Æ·ÅÆ', 0);
-insert into TPRODUCT_CATEGORY values (22, 'ÍÅ¹º', 0);
-insert into TPRODUCT_CATEGORY values (1, 'Í¼Òô', 0);
-insert into TPRODUCT_CATEGORY values (2, '°Ù»õ', 0);
+--æ’å…¥äº§å“åˆ†ç±»ä¿¡æ¯
+insert into TPRODUCT_CATEGORY values (19, 'æœé¥°', 2);
+insert into TPRODUCT_CATEGORY values (21, 'å“ç‰Œ', 0);
+insert into TPRODUCT_CATEGORY values (22, 'å›¢è´­', 0);
+insert into TPRODUCT_CATEGORY values (1, 'å›¾éŸ³', 0);
+insert into TPRODUCT_CATEGORY values (2, 'ç™¾è´§', 0);
 insert into TPRODUCT_CATEGORY values (28, 'qq', 1);
-insert into TPRODUCT_CATEGORY values (7, '¼Ò¾Ó', 2);
-insert into TPRODUCT_CATEGORY values (8, 'ÃÀ×±', 22);
-insert into TPRODUCT_CATEGORY values (9, 'Ä¸Ó¤', 2);
-insert into TPRODUCT_CATEGORY values (10, 'Ê³Æ·', 2);
-insert into TPRODUCT_CATEGORY values (11, 'ÊÖ»úÊıÂë', 2);
-insert into TPRODUCT_CATEGORY values (12, '¼Ò¾ÓÊ×ÊÎ', 2);
-insert into TPRODUCT_CATEGORY values (13, 'ÊÖ±íÊÎÆ·', 2);
-insert into TPRODUCT_CATEGORY values (14, 'Ğ¬°ü', 21);
-insert into TPRODUCT_CATEGORY values (15, '¼Òµç', 2);
-insert into TPRODUCT_CATEGORY values (16, 'µçÄÔ°ì¹«', 2);
-insert into TPRODUCT_CATEGORY values (17, 'Íæ¾ßÎÄ¾ß', 21);
-insert into TPRODUCT_CATEGORY values (18, 'Æû³µÓÃÆ·', 21);
-insert into TPRODUCT_CATEGORY values (20, '²ÊÆ±³äÖµ', 2);
-insert into TPRODUCT_CATEGORY values (4, 'ÒôÀÖ', 1);
-insert into TPRODUCT_CATEGORY values (5, 'ÔË¶¯½¡¿µ', 0);
-insert into TPRODUCT_CATEGORY values (23, 'Ò×ÂòÉçÇø', 0);
+insert into TPRODUCT_CATEGORY values (7, 'å®¶å±…', 2);
+insert into TPRODUCT_CATEGORY values (8, 'ç¾å¦†', 22);
+insert into TPRODUCT_CATEGORY values (9, 'æ¯å©´', 2);
+insert into TPRODUCT_CATEGORY values (10, 'é£Ÿå“', 2);
+insert into TPRODUCT_CATEGORY values (11, 'æ‰‹æœºæ•°ç ', 2);
+insert into TPRODUCT_CATEGORY values (12, 'å®¶å±…é¦–é¥°', 2);
+insert into TPRODUCT_CATEGORY values (13, 'æ‰‹è¡¨é¥°å“', 2);
+insert into TPRODUCT_CATEGORY values (14, 'é‹åŒ…', 21);
+insert into TPRODUCT_CATEGORY values (15, 'å®¶ç”µ', 2);
+insert into TPRODUCT_CATEGORY values (16, 'ç”µè„‘åŠå…¬', 2);
+insert into TPRODUCT_CATEGORY values (17, 'ç©å…·æ–‡å…·', 21);
+insert into TPRODUCT_CATEGORY values (18, 'æ±½è½¦ç”¨å“', 21);
+insert into TPRODUCT_CATEGORY values (20, 'å½©ç¥¨å……å€¼', 2);
+insert into TPRODUCT_CATEGORY values (4, 'éŸ³ä¹', 1);
+insert into TPRODUCT_CATEGORY values (5, 'è¿åŠ¨å¥åº·', 0);
+insert into TPRODUCT_CATEGORY values (23, 'æ˜“ä¹°ç¤¾åŒº', 0);
 
---²åÈë²úÆ·ĞÅÏ¢
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÀÖ¿ÛÆÕÍ¨ĞÍ±£ÏÊºĞÊ¥µ®7¼şÌ×', 'Ê¥µ®7¼şÌ×', 69, 2000, 2, 7, 'images/product/2.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Å·çêÀ³¾ùºâ±£ÊªËÄ¼şÌ×', '¾ùºâ±£ÊªËÄ¼şÌ×', 279, 50, 2, 8, 'images/product/3.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÁªÏë±Ê¼Ç±¾µçÄÔ ¸ßËÙ¶ÀÁ¢ÏÔ´æ', '¸ßËÙ¶ÀÁ¢ÏÔ´æ I7´¦ÀíÆ÷', 4199, 50, 2, 16, 'images/product/4.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µÂ·ÆË¿ÇÉ¿ËÁ¦', '108.00', 100, 111, 1, 4, 'images/product/1.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Genius925´¿ÒøÊ©»ªÂåÊÀÆæË®¾§µõ×¹', '»ªÂåÊÀÆæË®¾§µõ×¹', 69, 50, 2, 12, 'images/product/6.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÀûÈÊ2018M¸£ÂúÌÃµç±ıîõ ºÃÓÃÊµ»İ', '¸£ÂúÌÃµç±ıîõ ºÃÓÃÊµ»İ', 268, 50, 2, 15, 'images/product/7.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '´ïÅÉ¸ßµµÀ­¸ËÏä20´ç ¾­µä¿îÊ½', '¸ßµµÀ­¸ËÏä20´ç ¾­µä¿îÊ½', 198, 50, 2, 14, 'images/product/8.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '°®¹úÕßMP4 È«ÆÁ´¥Ãş¶à¸ñÊ½²¥·Å 4G', 'È«ÆÁ´¥Ãş¶à¸ñÊ½²¥·Å 4G', 289, 50, 2, 11, 'images/product/0.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '¶àÃÀ×Ì½ğ×°½ğ¶Ü3½×¶ÎÓ×¶ùÅä·½ÄÌ·Û', '½ğ¶Ü3½×¶ÎÓ×¶ùÅä·½ÄÌ·Û', 186, 50, 1, 10, 'images/product/10.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µÂ·ÆË¿ÇÉ¿ËÁ¦', 'ÇÉ¿ËÁ¦500g/ºĞ', 108, 100, 1, 10, 'images/product/1.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÀÖ¿ÛÆÕÍ¨ĞÍ±£ÏÊºĞÊ¥µ®7¼şÌ×', 'Ê¥µ®7¼şÌ×', 69, 2000, 2, 7, 'images/product/2.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Å·çêÀ³¾ùºâ±£ÊªËÄ¼şÌ×', '¾ùºâ±£ÊªËÄ¼şÌ×', 279, 50, 2, 8, 'images/product/3.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÁªÏë±Ê¼Ç±¾µçÄÔ ¸ßËÙ¶ÀÁ¢ÏÔ´æ', '¸ßËÙ¶ÀÁ¢ÏÔ´æ I7´¦ÀíÆ÷', 4199, 50, 2, 16, 'images/product/4.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', 'ºìÉ«ÉÏÒÂ', 199, 100, 2, 19, 'images/product/clothes2.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Genius925´¿ÒøÊ©»ªÂåÊÀÆæË®¾§µõ×¹', '»ªÂåÊÀÆæË®¾§µõ×¹', 69, 50, 2, 12, 'images/product/6.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÀûÈÊ2018M¸£ÂúÌÃµç±ıîõ ºÃÓÃÊµ»İ', '¸£ÂúÌÃµç±ıîõ ºÃÓÃÊµ»İ', 268, 50, 2, 15, 'images/product/7.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '´ïÅÉ¸ßµµÀ­¸ËÏä20´ç ¾­µä¿îÊ½', '¸ßµµÀ­¸ËÏä20´ç ¾­µä¿îÊ½', 198, 50, 2, 14, 'images/product/8.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '°®¹úÕßMP4 È«ÆÁ´¥Ãş¶à¸ñÊ½²¥·Å 4G', 'È«ÆÁ´¥Ãş¶à¸ñÊ½²¥·Å 4G', 289, 50, 2, 11, 'images/product/0.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '¶àÃÀ×Ì½ğ×°½ğ¶Ü3½×¶ÎÓ×¶ùÅä·½ÄÌ·Û', '½ğ¶Ü3½×¶ÎÓ×¶ùÅä·½ÄÌ·Û', 186, 50, 1, 10, 'images/product/10.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', '¼Ğ¿Ë', 99, 100, 2, 19, 'images/product/clothes3.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', '·ÛÉ«ÉÏÒÂ', 96, 100, 2, 19, 'images/product/clothes5.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', '»ÒÉ«ÉÏÒÂ', 299, 100, 2, 19, 'images/product/clothes6.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', 'ºìÉ«ÉÏÒÂ', 199, 100, 2, 19, 'images/product/clothes7.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', 'ÒøÉ«ÉÏÒÂ', 599, 100, 2, 19, 'images/product/clothes8.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', 'À¶É«ÉÏÒÂ', 399, 100, 2, 19, 'images/product/clothes9.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', 'Ç³À¶É«ÉÏÒÂ', 499, 100, 2, 19, 'images/product/clothes10.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÉÏÒÂ', '°×É«ÉÏÒÂ', 68, 100, 2, 19, 'images/product/clothes4.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', 'ºÚÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes1.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', '»ÒÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes2.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', 'À¶É«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes3.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', '»ÒÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes4.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', '×ØÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes5.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', 'ºÚÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes6.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', 'ºÚÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes7.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', 'ºÚÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes8.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', 'ºÚÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes9.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Æ¤Ğ¬', 'ºÚÉ«Æ¤Ğ¬', 299, 100, 21, 14, 'images/product/shoes10.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass1.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass2.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass3.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass4.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass5.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass6.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass7.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass8.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass9.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ÑÛ¾µ', 'Ì«Ñô¾µ', 299, 100, 2, 12, 'images/product/sunglass10.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 1299, 100, 2, 15, 'images/product/television1.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 1299, 100, 2, 15, 'images/product/television2.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 2299, 100, 2, 15, 'images/products/television3.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 2299, 100, 2, 15, 'images/product/television4.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 3299, 100, 2, 15, 'images/product/television5.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 2299, 100, 2, 15, 'images/product/television6.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 4299, 100, 2, 15, 'images/product/television7.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 5299, 100, 2, 15, 'images/product/television8.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 2299, 100, 2, 15, 'images/product/television9.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'µçÊÓ', '²Êµç', 6299, 100, 2, 15, 'images/product/television10.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '¿¨µØÑÇ', '¼ûÖ¤ÄãµÄ°®Çé', 22122, 100, 2, 13, 'images/product/20.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '¿¨µØÑÇ', '¼ûÖ¤ÄãµÄ°®Çé', 22122, 100, 22, 22, 'images/product/20.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Ë«É«Çò', 'À´°É', 2, 1000, 2, 20, 'images/product/21.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '±äĞÎ½ğ¸Õ', '´ó»Æ·ä', 222, 1000, 21, 17, 'images/product/23.jpg');
-insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'GPS', 'µ¼º½ÒÇ', 2222, 1000, 21, 18, 'images/product/24.jpg');
+--æ’å…¥äº§å“ä¿¡æ¯
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¹æ‰£æ™®é€šå‹ä¿é²œç›’åœ£è¯7ä»¶å¥—', 'åœ£è¯7ä»¶å¥—', 69, 2000, 2, 7, 'images/product/2.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'æ¬§ç€è±å‡è¡¡ä¿æ¹¿å››ä»¶å¥—', 'å‡è¡¡ä¿æ¹¿å››ä»¶å¥—', 279, 50, 2, 8, 'images/product/3.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'è”æƒ³ç¬”è®°æœ¬ç”µè„‘ é«˜é€Ÿç‹¬ç«‹æ˜¾å­˜', 'é«˜é€Ÿç‹¬ç«‹æ˜¾å­˜ I7å¤„ç†å™¨', 4199, 50, 2, 16, 'images/product/4.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'å¾·è²ä¸å·§å…‹åŠ›', '108.00', 100, 111, 1, 4, 'images/product/1.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Genius925çº¯é“¶æ–½åæ´›ä¸–å¥‡æ°´æ™¶åŠå ', 'åæ´›ä¸–å¥‡æ°´æ™¶åŠå ', 69, 50, 2, 12, 'images/product/6.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'åˆ©ä»2018Mç¦æ»¡å ‚ç”µé¥¼é“› å¥½ç”¨å®æƒ ', 'ç¦æ»¡å ‚ç”µé¥¼é“› å¥½ç”¨å®æƒ ', 268, 50, 2, 15, 'images/product/7.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'è¾¾æ´¾é«˜æ¡£æ‹‰æ†ç®±20å¯¸ ç»å…¸æ¬¾å¼', 'é«˜æ¡£æ‹‰æ†ç®±20å¯¸ ç»å…¸æ¬¾å¼', 198, 50, 2, 14, 'images/product/8.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çˆ±å›½è€…MP4 å…¨å±è§¦æ‘¸å¤šæ ¼å¼æ’­æ”¾ 4G', 'å…¨å±è§¦æ‘¸å¤šæ ¼å¼æ’­æ”¾ 4G', 289, 50, 2, 11, 'images/product/0.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'å¤šç¾æ»‹é‡‘è£…é‡‘ç›¾3é˜¶æ®µå¹¼å„¿é…æ–¹å¥¶ç²‰', 'é‡‘ç›¾3é˜¶æ®µå¹¼å„¿é…æ–¹å¥¶ç²‰', 186, 50, 1, 10, 'images/product/10.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'å¾·è²ä¸å·§å…‹åŠ›', 'å·§å…‹åŠ›500g/ç›’', 108, 100, 1, 10, 'images/product/1.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¹æ‰£æ™®é€šå‹ä¿é²œç›’åœ£è¯7ä»¶å¥—', 'åœ£è¯7ä»¶å¥—', 69, 2000, 2, 7, 'images/product/2.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'æ¬§ç€è±å‡è¡¡ä¿æ¹¿å››ä»¶å¥—', 'å‡è¡¡ä¿æ¹¿å››ä»¶å¥—', 279, 50, 2, 8, 'images/product/3.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'è”æƒ³ç¬”è®°æœ¬ç”µè„‘ é«˜é€Ÿç‹¬ç«‹æ˜¾å­˜', 'é«˜é€Ÿç‹¬ç«‹æ˜¾å­˜ I7å¤„ç†å™¨', 4199, 50, 2, 16, 'images/product/4.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'çº¢è‰²ä¸Šè¡£', 199, 100, 2, 19, 'images/product/clothes2.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'Genius925çº¯é“¶æ–½åæ´›ä¸–å¥‡æ°´æ™¶åŠå ', 'åæ´›ä¸–å¥‡æ°´æ™¶åŠå ', 69, 50, 2, 12, 'images/product/6.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'åˆ©ä»2018Mç¦æ»¡å ‚ç”µé¥¼é“› å¥½ç”¨å®æƒ ', 'ç¦æ»¡å ‚ç”µé¥¼é“› å¥½ç”¨å®æƒ ', 268, 50, 2, 15, 'images/product/7.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'è¾¾æ´¾é«˜æ¡£æ‹‰æ†ç®±20å¯¸ ç»å…¸æ¬¾å¼', 'é«˜æ¡£æ‹‰æ†ç®±20å¯¸ ç»å…¸æ¬¾å¼', 198, 50, 2, 14, 'images/product/8.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çˆ±å›½è€…MP4 å…¨å±è§¦æ‘¸å¤šæ ¼å¼æ’­æ”¾ 4G', 'å…¨å±è§¦æ‘¸å¤šæ ¼å¼æ’­æ”¾ 4G', 289, 50, 2, 11, 'images/product/0.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'å¤šç¾æ»‹é‡‘è£…é‡‘ç›¾3é˜¶æ®µå¹¼å„¿é…æ–¹å¥¶ç²‰', 'é‡‘ç›¾3é˜¶æ®µå¹¼å„¿é…æ–¹å¥¶ç²‰', 186, 50, 1, 10, 'images/product/10.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'å¤¹å…‹', 99, 100, 2, 19, 'images/product/clothes3.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'ç²‰è‰²ä¸Šè¡£', 96, 100, 2, 19, 'images/product/clothes5.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'ç°è‰²ä¸Šè¡£', 299, 100, 2, 19, 'images/product/clothes6.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'çº¢è‰²ä¸Šè¡£', 199, 100, 2, 19, 'images/product/clothes7.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'é“¶è‰²ä¸Šè¡£', 599, 100, 2, 19, 'images/product/clothes8.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'è“è‰²ä¸Šè¡£', 399, 100, 2, 19, 'images/product/clothes9.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'æµ…è“è‰²ä¸Šè¡£', 499, 100, 2, 19, 'images/product/clothes10.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ä¸Šè¡£', 'ç™½è‰²ä¸Šè¡£', 68, 100, 2, 19, 'images/product/clothes4.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'é»‘è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes1.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'ç°è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes2.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'è“è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes3.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'ç°è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes4.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'æ£•è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes5.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'é»‘è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes6.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'é»‘è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes7.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'é»‘è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes8.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'é»‘è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes9.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çš®é‹', 'é»‘è‰²çš®é‹', 299, 100, 21, 14, 'images/product/shoes10.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass1.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass2.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass3.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass4.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass5.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass6.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass7.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass8.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass9.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'çœ¼é•œ', 'å¤ªé˜³é•œ', 299, 100, 2, 12, 'images/product/sunglass10.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 1299, 100, 2, 15, 'images/product/television1.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 1299, 100, 2, 15, 'images/product/television2.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 2299, 100, 2, 15, 'images/products/television3.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 2299, 100, 2, 15, 'images/product/television4.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 3299, 100, 2, 15, 'images/product/television5.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 2299, 100, 2, 15, 'images/product/television6.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 4299, 100, 2, 15, 'images/product/television7.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 5299, 100, 2, 15, 'images/product/television8.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 2299, 100, 2, 15, 'images/product/television9.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'ç”µè§†', 'å½©ç”µ', 6299, 100, 2, 15, 'images/product/television10.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'å¡åœ°äºš', 'è§è¯ä½ çš„çˆ±æƒ…', 22122, 100, 2, 13, 'images/product/20.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'å¡åœ°äºš', 'è§è¯ä½ çš„çˆ±æƒ…', 22122, 100, 22, 22, 'images/product/20.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'åŒè‰²çƒ', 'æ¥å§', 2, 1000, 2, 20, 'images/product/21.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'å˜å½¢é‡‘åˆš', 'å¤§é»„èœ‚', 222, 1000, 21, 17, 'images/product/23.jpg');
+insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, 'GPS', 'å¯¼èˆªä»ª', 2222, 1000, 21, 18, 'images/product/24.jpg');
 insert into TPRODUCT values (SEQ_PRODUCT_ID.NEXTVAL, '123', null, 100, 111, 2, 9, 'images\product\133214492473826.jpg');

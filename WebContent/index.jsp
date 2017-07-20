@@ -10,6 +10,7 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/function.js"></script>
 
+
 </head>
 <body>
 <%@ include file="index_top.jsp"  %>
@@ -108,7 +109,7 @@
 	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2016 上海海文 All Rights Reserved.
+	Copyright &copy; 2017  TeaR  All Rights Reserved
 </div>
 </body>
 </html>

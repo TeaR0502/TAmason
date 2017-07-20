@@ -1,57 +1,102 @@
-<%@ page language="java" contentType="text/html; charset=GBK" pageEncoding="GBK" 
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" 
 					import="java.io.*,
 									 java.util.*,
 									 com.sun.image.codec.jpeg.*,
 									 java.awt.*,
 									 java.awt.image.*"%>
 <%
-		//1. ÑéÖ¤ÂëÄÚÈİÎÄ±¾Éú³É
+		//0.é€‰æ‹©é¢œè‰²
+		int color = 0;
+		if ((new Random()).nextInt(99) > 50){
+			color = 1;
+		}
+
+
+
+		//1. éªŒè¯ç å†…å®¹æ–‡æœ¬ç”Ÿæˆ
 		String s = "";
-
+		
         int intCount = 0;
-
+		
         intCount = (new Random()).nextInt(9999);// 
-
-        if (intCount < 1000)	// Êı×ÖÎ»Êı²¹È«
-            intCount += 1000;
-
-        s = intCount + "";
-        // ±£´æÈësession,ÓÃÓÚÓëÓÃ»§µÄÊäÈë½øĞĞ±È½Ï.
-        // ×¢Òâ±È½ÏÍêÖ®ºóÇå³ısession.
-        session.setAttribute("validateCode", s);
+		
         
+		
+        /*åŸå…ˆçš„æ–¹æ³•,ä¼šå¯¼è‡´äº§ç”Ÿçš„æ•°å­—ä¸ä¼šæœ‰1000ä»¥ä¸‹çš„
+        if (intCount < 1000)	// æ•°å­—ä½æ•°è¡¥å…¨
+            intCount += 1000;
+		*/
+		if(intCount < 1000){
+			s = "0";
+		}
+        s += intCount + "";
+        // ä¿å­˜å…¥session,ç”¨äºä¸ç”¨æˆ·çš„è¾“å…¥è¿›è¡Œæ¯”è¾ƒ.
+        // æ³¨æ„æ¯”è¾ƒå®Œä¹‹åæ¸…é™¤session.
+       
+        
+      //1.1 éªŒè¯ç æ··ä¹±æµ‹è¯•
+      		String mixs = "";
+      		int mixCount = 0;
+      		mixCount = (new Random()).nextInt(9999);
+      		
+      		if(mixCount < 1000){
+      			mixs = "0";
+    		}
+    		
+            mixs += mixCount + "";
+       //1.3 é€‰æ‹©å“ªä¸ªä¸ºéªŒè¯ç 
+       session.setAttribute("color",color);
+       if (color == 0){
+    	   session.setAttribute("validateCode", s);
+           
+       } else {
+    	   session.setAttribute("validateCode", mixs);
+       }
 
-		//2. Í¨¹ıJava2D»æÍ¼API½«ÑéÖ¤ÂëÎÄ±¾×ª»»ÎªÍ¼Æ¬
-        BufferedImage image = new BufferedImage(35, 14,	// Ö¸¶¨¿í£¬¸ß
+		//2. é€šè¿‡Java2Dç»˜å›¾APIå°†éªŒè¯ç æ–‡æœ¬è½¬æ¢ä¸ºå›¾ç‰‡
+        BufferedImage image = new BufferedImage(70, 14,	// æŒ‡å®šå®½ï¼Œé«˜
                 BufferedImage.TYPE_INT_RGB);
 
-		// »æÍ¼¶ÔÏóGraphics
+		// ç»˜å›¾å¯¹è±¡Graphics
         Graphics gra = image.getGraphics();
-        // ÉèÖÃ±³¾°É«
-        gra.setColor(Color.GREEN);
+        Graphics gra2 = image.getGraphics();
+        // è®¾ç½®èƒŒæ™¯è‰²
+        gra.setColor(Color.white);
         gra.fillRect(1, 1, 33, 12);
-        // ÉèÖÃ×ÖÌåÉ«
-        gra.setColor(Color.black);
-        gra.setFont(new Font("ËÎÌå", Font.PLAIN, 12));	// Ö¸¶¨×ÖÌå¡¢ÑùÊ½¡¢×ÖºÅ´óĞ¡
-        // Êä³öÊı×Ö
+        gra2.setColor(Color.white);
+        gra2.fillRect(1, 1, 33, 12);
+        
+        // è®¾ç½®å­—ä½“è‰²
+        gra.setColor(Color.red);
+        gra.setFont(new Font("å®‹ä½“", Font.PLAIN, 12));	// æŒ‡å®šå­—ä½“ã€æ ·å¼ã€å­—å·å¤§å°
+        gra2.setColor(Color.green);
+        gra2.setFont(new Font("å®‹ä½“", Font.PLAIN, 12));	// æŒ‡å®šå­—ä½“ã€æ ·å¼ã€å­—å·å¤§å°
+        
+        // è¾“å‡ºæ•°å­—
         char c;
-
+		char d;
         for (int i = 0; i < 4; i++) {
-
             c = s.charAt(i);
-
-            gra.drawString(c + "", i * 7 + 4, 11); // 7Îª¿í¶È£¬11ÎªÉÏÏÂ¸ß¶ÈÎ»ÖÃ
+			d = mixs.charAt(i);
+			if (i%2 == 0){
+				gra.drawString(c + "", i * 14 + 4, 9); // 7ä¸ºå®½åº¦ï¼Œ11ä¸ºä¸Šä¸‹é«˜åº¦ä½ç½®
+				gra2.drawString(d + "", i * 14 + 4 + 4, 12); // 7ä¸ºå®½åº¦ï¼Œ11ä¸ºä¸Šä¸‹é«˜åº¦ä½ç½®
+			} else{
+				gra.drawString(c + "", i * 14 + 8, 12); // 7ä¸ºå®½åº¦ï¼Œ11ä¸ºä¸Šä¸‹é«˜åº¦ä½ç½®
+				gra2.drawString(d + "", i * 14 + 12, 9); // 7ä¸ºå®½åº¦ï¼Œ11ä¸ºä¸Šä¸‹é«˜åº¦ä½ç½®
+			}
+            
 
         }
 
-		//3.¶¯Ì¬Éú³ÉµÄÍ¼Æ¬Êä³öµ½¿Í»§¶Ë
+		//3.åŠ¨æ€ç”Ÿæˆçš„å›¾ç‰‡è¾“å‡ºåˆ°å®¢æˆ·ç«¯
 		response.setContentType("image/jpeg");
 		
-		OutputStream toClient = response.getOutputStream();	// Í¼Æ¬Êı¾İÒªÍ¨¹ı2½øÖÆÁ÷·½Ê½´«ËÍ
+		OutputStream toClient = response.getOutputStream();	// å›¾ç‰‡æ•°æ®è¦é€šè¿‡2è¿›åˆ¶æµæ–¹å¼ä¼ é€
 		
-        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(toClient); // ¾ßÌåÍ¼Æ¬¸ñÊ½±àÂë×ª»»Æ÷
+        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(toClient); // å…·ä½“å›¾ç‰‡æ ¼å¼ç¼–ç è½¬æ¢å™¨
 
-        encoder.encode(image);	// ×ª»»²¢Êä³öµ½¿Í»§¶Ë
+        encoder.encode(image);	// è½¬æ¢å¹¶è¾“å‡ºåˆ°å®¢æˆ·ç«¯
 
 		toClient.close();
 
