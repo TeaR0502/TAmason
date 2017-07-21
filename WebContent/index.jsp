@@ -10,8 +10,27 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
-
-
+<script type="text/javascript" >
+	$(function(){
+		window.location.href='index?id=${param.cid}';
+		
+		/*
+		alert(${param.cid});
+		if (${param.cid} != null && ${param.cid} != ""){
+			alert("可以");
+		} else {
+			alert("调用全部");
+		}
+		*/
+		/*
+		if (${requestScope.id ==""} || ${requestScope.id == null} ){
+			window.location.href='index.jsp?id=all';
+		} else{
+			window.location.href='index.jsp?id=${requestScope.id}';
+		}
+		*/
+	});
+</script>
 </head>
 <body>
 <%@ include file="index_top.jsp"  %>
@@ -22,7 +41,6 @@
 		<div class="last-view">
 			<h2>最近浏览</h2>
 			<dl class="clearfix">
-				
 					<dt><img style="width: 54px; height: 54px;" src="images/product/0.jpg" /></dt>
 					<dd><a href="#">商品名称</a></dd>
 				

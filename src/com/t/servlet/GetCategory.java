@@ -1,20 +1,27 @@
 package com.t.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class exitServlet
- */
-@WebServlet("/exitServlet")
-public class exitServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+import com.alibaba.fastjson.JSON;
+import com.t.bean.Product_Category;
+import com.t.serviceimpl.ProductServiceimpl;
 
+/**
+ * Servlet implementation class GetCategory
+ */
+@WebServlet("/getCategory")
+public class GetCategory extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,9 +34,22 @@ public class exitServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession httpSession = request.getSession();
-		httpSession.invalidate();
-		response.sendRedirect("index.jsp");
+		System.out.println(request.getParameter("action") == "get0");
+		if (request.getParameter("action").equals("get0")) {
+			getFirstCategory(request, response);
+		} 
+		
 	}
+	
+	void getFirstCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("firstCategory") == null) {
+			List<Product_Category> list = ProductServiceimpl.getNew().getCategory(0);
+			session.setAttribute("firstCategory", list);
+		}
+		response.sendRedirect("index.jsp");
+		
+	}
+	
 
 }

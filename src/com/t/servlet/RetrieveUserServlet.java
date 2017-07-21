@@ -13,7 +13,7 @@ import com.t.serviceimpl.UserServiceimpl;
  * Servlet implementation class retrieveUserServlet
  */
 @WebServlet("/retrieveUserServlet")
-public class retrieveUserServlet extends HttpServlet {
+public class RetrieveUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

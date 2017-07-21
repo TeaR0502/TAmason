@@ -26,11 +26,19 @@
 		
 	<div class="navbar">
 		<ul class="clearfix">
-			<li><a href="#">首页</a></li>
+			<li><a href="index.jsp">首页</a></li>
 			
-			<li><a href="#">商品名称</a></li>
-			<li><a href="#">我来试试看变得很长很长之后会变成什么样子</a></li>
+			<c:if test="${sessionScope.firstCategory == null }">
+				<script type="text/javascript">
+					$(function () {
+						window.location.href='getCategory?action=get0'
+					});
+				</script>
+			</c:if>
 			
+			<c:forEach items="${sessionScope.firstCategory}" var="category">
+				<li><a href="index.jsp?cid=${category.getId()}">${category.getName()}</a></li>
+			</c:forEach>
 		</ul>
 	</div>
 	
