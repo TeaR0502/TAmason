@@ -84,4 +84,10 @@ public class UserDAOimpl implements UserDAO {
 		return rows;
 	}
 
+	@Override
+	public int updatePassword(String username, String password) {
+		String sql = "UPDATE tuser SET password = ? WHERE username = ?";
+		return jdbcTemplate.update(sql,password,username);
+	}
+
 }

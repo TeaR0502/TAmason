@@ -17,11 +17,11 @@
 		<em class="corner rt"></em>
 		<div class="box">
 			<h1>请键入找回密码的相关信息：</h1>
-			<form id="loginForm" method="post" action="retrievePassWordServlet">
+			<form id="loginForm" method="post" >
 				<table>
 					<tr>
 						<td class="field">用户名：</td>
-						<td><input class="text" type="text" name="userName" id="username"/><span></span></td>
+						<td><input class="text" type="text" name="userName" id="userName"/><span id = "uName"></span></td>
 					</tr>
 					<tr>
 						<td class="field">身份证：</td>
@@ -33,9 +33,20 @@
 					</tr>
 					
 					<tr>
-						<td></td>
-						<td><label class="ui-green"><input type="submit" name="submit" value="提交" /></label></td>
+						<td><span id = "submitbuttenspan">先填入完整内容</span></td>
+						<td><label class="ui-green"><input type="button" name="submit" value="找回密码" id="submitbutten"/></label></td>
 					</tr>
+					
+
+					<tr class="hide">
+						<td>请在此输入新密码：</td>
+						<td><input class="text" type="password" id="password" /><span></span></td>
+					</tr>
+					<tr class="hide">
+						<td></td>
+						<td><label class="ui-blue"><input type="button" name="submit" value="修改密码" id="submitPasswordButten"/></label><span></span></td>
+					</tr>
+
 				</table>
 			</form>
 		</div>

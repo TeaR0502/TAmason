@@ -14,16 +14,16 @@ $(function(){
 						if (data == 0){
 							$("#result").html("登陆成功!5秒后自动转跳到<a href='index.jsp'>主页<a>!");
 							$("#result").css({"color":"green"});
-							$("#result").show(1000);
+							$("#result").show(500);
 							setTimeout(window.location.href='index.jsp',5000);
 						} else if (data == 1){
 							$("#result").html("密码错误!请确认!");
 							$("#result").css({"color":"red"});
-							$("#result").show(1000);
+							$("#result").show(500);
 						} else if (data == 2){
 							$("#result").html("无此用户,请确认账号!或<a href='register.jsp'>注册<a>新会员!");
 							$("#result").css({"color":"red"});
-							$("#result").show(1000);
+							$("#result").show(500);
 						} else{
 							alert("数据异常");
 						}
@@ -48,11 +48,11 @@ $(function(){
 						if (data == 0){
 							$("#veryCodespan").html("请输入图中红色数字");
 							$("#veryCodespan").css({"color":"green"});
-							$("#veryCodespan").show(1000);
+							$("#veryCodespan").show(500);
 						} else if (data == 1){
 							$("#veryCodespan").html("请输入图中绿色数字");
 							$("#veryCodespan").css({"color":"green"});
-							$("#veryCodespan").show(1000);
+							$("#veryCodespan").show(500);
 						} else{
 							alert("请刷新页面!");
 						}
@@ -69,7 +69,7 @@ $(function(){
 			if ($("#passWord").val() == "" || $("#veryCode").val() == "" || $("#userName").val() == ""){
 				$("#veryCodespan").html("请完善所有信息");
 				$("#veryCodespan").css({"color":"red"});
-				$("#veryCodespan").show(1000);
+				$("#veryCodespan").show(500);
 			} else {
 				//
 				$.ajax({
@@ -81,12 +81,12 @@ $(function(){
 						if (data == 0){
 							$("#veryCodespan").html("");
 							$("#veryCodespan").css({"color":"green"});
-							$("#veryCodespan").hide(1000);
-							$("#submitbutten").show(1000);
+							$("#veryCodespan").hide(500);
+							$("#submitbutten").show(500);
 						} else{
 							$("#veryCodespan").html("验证码不正确!");
 							$("#veryCodespan").css({"color":"red"});
-							$("#veryCodespan").show(1000);
+							$("#veryCodespan").show(500);
 							
 						}
 				},
@@ -102,28 +102,28 @@ $(function(){
 			if ($("#passWord").val() == ""){
 				$("#passWordspan").html("密码不能为空!");
 				$("#passWordspan").css({"color":"red"});
-				$("#passWordspan").show(1000);
-				$("#submitbutten").hide(1000);
+				$("#passWordspan").show(500);
+				$("#submitbutten").hide(500);
 			} else {
 				$("#passWordspan").html("");
-				$("#passWordspan").hide(1000);
+				$("#passWordspan").hide(500);
 			}
 		});
 		//点击用户名输入框显示提示
 		$("#userName").click(function(){
 			$("#usernamespan").html("在此输入用户名");
 			$("#usernamespan").css({"color":"green"});
-			$("#usernamespan").show(1000);
+			$("#usernamespan").show(500);
 		});
 		//焦点离开判断用户名是否为空
 		$("#userName").blur(function(){
 			if ($("#userName").val() == ""){
 				$("#usernamespan").html("用户名不能为空!");
 				$("#usernamespan").css({"color":"red"});
-				$("#usernamespan").show(1000);
-				$("#submitbutten").hide(1000);
+				$("#usernamespan").show(500);
+				$("#submitbutten").hide(500);
 			} else {
-				$("#usernamespan").hide(1000);
+				$("#usernamespan").hide(500);
 				$("#usernamespan").html("");
 			}
 		});

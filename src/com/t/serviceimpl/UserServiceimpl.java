@@ -10,6 +10,8 @@ import com.t.bean.Users;
 import com.t.daoimpl.UserDAOimpl;
 import com.t.service.UserService;
 
+import oracle.net.aso.f;
+
 public class UserServiceimpl implements UserService {
 
 	private static UserDAOimpl userDAOimpl = null;
@@ -38,7 +40,7 @@ public class UserServiceimpl implements UserService {
 
 	@Override
 	public Integer userLogin(String username, String password) {
-		Users users = UserDAOimpl.getNew().queryByName(username);
+		Users users = userDAOimpl.queryByName(username);
 		Integer status = -1;
 		if (users == null) {
 			status = 2;
@@ -65,15 +67,30 @@ public class UserServiceimpl implements UserService {
 		users.setMobile(mobile);
 		users.setAddress(address);
 		System.out.println("获取用户注册数据"+users);
-		Integer rows = UserDAOimpl.getNew().addUser(users);
+		Integer rows = userDAOimpl.addUser(users);
 		return rows;
 	}
 
 	@Override
 	public boolean judgeUsernanme(String name) {
 		Users users = UserDAOimpl.getNew().queryByName(name);
-		
 		return users == null ? true:false;
+	}
+
+	@Override
+	public boolean retrieveUser(String username, String idcode, String email) {
+		Users users = userDAOimpl.queryByName(username);
+		if (users == null) {
+			System.out.println("异常,无此用户");
+			return false;
+		}
+		return (users.getIdentity_code().equals(idcode) && users.getEmail().equals(email) )?true:false;
+	}
+
+	@Override
+	public boolean updatePassword(String username, String password) {
+		
+		return userDAOimpl.updatePassword(username, password) == 1 ? true:false;
 	}
 
 }

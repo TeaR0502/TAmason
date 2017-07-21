@@ -3,6 +3,14 @@ package com.t.dao;
 import com.t.bean.Users;
 
 public interface UserDAO {
+	
+	/**
+	 * 根据用户名修改用户密码
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	int updatePassword(String username,String password);
 	/**
 	 * 根据用户名查询用户
 	 * @param username 用户名

@@ -51,11 +51,11 @@ $(function(){
 					if (data == 0){
 						$("#uName").html("用户名可以使用");
 						$("#uName").css({"color":"green"});
-						$("#uName").show(1000);
+						$("#uName").show(500);
 					} else if (data == 1){
 						$("#uName").html("用户名已存在");
 						$("#uName").css({"color":"red"});
-						$("#uName").show(1000);
+						$("#uName").show(500);
 					} else{
 						alert("请刷新页面!");
 					}
@@ -81,11 +81,11 @@ $(function(){
 					if (data == 0){
 						$("#veryCodespan").html("请输入图中红色数字");
 						$("#veryCodespan").css({"color":"green"});
-						$("#veryCodespan").show(1000);
+						$("#veryCodespan").show(500);
 					} else if (data == 1){
 						$("#veryCodespan").html("请输入图中绿色数字");
 						$("#veryCodespan").css({"color":"green"});
-						$("#veryCodespan").show(1000);
+						$("#veryCodespan").show(500);
 					} else{
 						alert("请刷新页面!");
 					}
@@ -112,7 +112,7 @@ $(function(){
 		){
 			$("#veryCodespan").html("请正确填写所有信息");
 			$("#veryCodespan").css({"color":"red"});
-			$("#veryCodespan").show(1000);
+			$("#veryCodespan").show(500);
 		} else {
 			//
 			$.ajax({
@@ -124,12 +124,12 @@ $(function(){
 					if (data == 0){
 						$("#veryCodespan").html("");
 						$("#veryCodespan").css({"color":"green"});
-						$("#veryCodespan").hide(1000);
-						$("#submitbutten").show(1000);
+						$("#veryCodespan").hide(500);
+						$("#submitbutten").show(500);
 					} else{
 						$("#veryCodespan").html("验证码不正确!");
 						$("#veryCodespan").css({"color":"red"});
-						$("#veryCodespan").show(1000);
+						$("#veryCodespan").show(500);
 						
 					}
 			},

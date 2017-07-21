@@ -5,6 +5,23 @@ import java.text.ParseException;
 public interface UserService {
 	
 	/**
+	 * 根据用户名和密码改修用户信息
+	 * @param username
+	 * @param password
+	 * @return 
+	 */
+	boolean updatePassword(String username, String password);
+	
+	/**
+	 * 根据用户名,身份证,邮箱欧安端用户身份
+	 * @param username
+	 * @param idcode
+	 * @param email
+	 * @return
+	 */
+	boolean retrieveUser(String username,String idcode,String email);
+	
+	/**
 	 * 根据用户名判断用户是否存在
 	 * @param name
 	 * @return 
