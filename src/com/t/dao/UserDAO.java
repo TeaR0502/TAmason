@@ -9,4 +9,11 @@ public interface UserDAO {
 	 * @return 返回查询到的Users类型对象
 	 */
 	Users queryByName(String username);
+	
+	/**
+	 * 新增用户资料
+	 * @param users 需要添加的Users类型的对象
+	 * @return 数据库修改的行数
+	 */
+	int addUser(Users users);
 }

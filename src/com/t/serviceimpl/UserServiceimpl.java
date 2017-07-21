@@ -1,5 +1,11 @@
 package com.t.serviceimpl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.catalina.User;
+
 import com.t.bean.Users;
 import com.t.daoimpl.UserDAOimpl;
 import com.t.service.UserService;
@@ -42,6 +48,32 @@ public class UserServiceimpl implements UserService {
 			status = 1;
 		}
 		return status;
+	}
+
+	@Override
+	public Integer userRegister(String name, String password, String sex, String birth, 
+			String idcode, String email,String mobile, String address) throws ParseException {
+		Users users = new Users();
+		users.setUsername(name);
+		users.setPassword(password);
+		users.setSex(sex);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date b =  simpleDateFormat.parse(birth);
+		users.setBirthday(b);
+		users.setIdentity_code(idcode);
+		users.setEmail(email);
+		users.setMobile(mobile);
+		users.setAddress(address);
+		System.out.println("获取用户注册数据"+users);
+		Integer rows = UserDAOimpl.getNew().addUser(users);
+		return rows;
+	}
+
+	@Override
+	public boolean judgeUsernanme(String name) {
+		Users users = UserDAOimpl.getNew().queryByName(name);
+		
+		return users == null ? true:false;
 	}
 
 }
