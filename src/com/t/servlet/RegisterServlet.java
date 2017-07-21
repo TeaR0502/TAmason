@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.t.serviceimpl.UserServiceimpl;
 
@@ -45,6 +46,10 @@ public class RegisterServlet extends HttpServlet {
 		String mobile = req.getParameter("mobile");
 		String address = req.getParameter("address");
 		Integer status = UserServiceimpl.getNew().userRegister(username, password, sex, birthday, idcode, email, mobile, address);
+		if (status.equals(1)) {
+			HttpSession	session = req.getSession();
+			session.setAttribute("username", username);
+		}
 		resp.getWriter().write(status.toString());
 	}
 	

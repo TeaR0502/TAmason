@@ -269,5 +269,3 @@ function reloadPrice(id, status)
 	}
 	priceBox.innerHTML = "￥" + price * number.value;
 }
-
-

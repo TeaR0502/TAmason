@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.t.daoimpl.UserDAOimpl;
 import com.t.serviceimpl.UserServiceimpl;
@@ -21,6 +22,10 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		Integer status = UserServiceimpl.getNew().userLogin(req.getParameter("username"), req.getParameter("password"));
+		if (status.equals(0)) {
+			HttpSession	session = req.getSession();
+			session.setAttribute("username", req.getParameter("username"));
+		}
 		resp.getWriter().write(status.toString());
 	}
 
