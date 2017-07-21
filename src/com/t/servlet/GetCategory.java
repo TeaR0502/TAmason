@@ -34,7 +34,6 @@ public class GetCategory extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getParameter("action") == "get0");
 		if (request.getParameter("action").equals("get0")) {
 			getFirstCategory(request, response);
 		} 
