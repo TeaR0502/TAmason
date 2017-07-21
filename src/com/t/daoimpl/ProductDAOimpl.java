@@ -72,4 +72,13 @@ public class ProductDAOimpl implements com.t.dao.ProductDAO {
 		return productList;
 	}
 
+	@Override
+	public Product_Category getCategoryName(int id) {
+		String sql = "SELECT * FROM TPRODUCT_CATEGORY WHERE ID = ?";
+		List<Product_Category> productList= jdbcTemplate.query(sql,new Object[] {id},
+				ParameterizedBeanPropertyRowMapper.newInstance(Product_Category.class));
+		
+		return productList.get(0);
+	}
+
 }

@@ -37,9 +37,24 @@ public class GetCategory extends HttpServlet {
 		if (request.getParameter("action").equals("get0")) {
 			getFirstCategory(request, response);
 		} 
+		if (request.getParameter("action").equals("getName")) {
+			System.out.println("准备获取名字");
+			getCategoryName(request, response);
+		} 
 		
 	}
 	
+	private void getCategoryName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title= request.getParameter("cid");
+		if (title.equals("all")) {
+			title = "首页";
+		} else {
+			title =ProductServiceimpl.getNew().getCategoryName(Integer.parseInt(request.getParameter("cid")));
+		}
+		System.out.println(title);
+		response.getWriter().write(title);
+	}
+
 	void getFirstCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("firstCategory") == null) {
@@ -49,6 +64,8 @@ public class GetCategory extends HttpServlet {
 		response.sendRedirect("index.jsp");
 		
 	}
+	
+	
 	
 
 }

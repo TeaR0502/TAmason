@@ -10,35 +10,20 @@
 <link type="text/css" rel="stylesheet" href="css/style.css" />
 <script type="text/javascript" src="scripts/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
+<script type="text/javascript" src="scripts/index.js"></script>
 <script type="text/javascript">
 	$(function(){
-		
-		alert("${sessionScope.productId}"+":"+ "${param.id}"+"<br>"+"${param.parent}"+":"+"${sessionScope.productParent}");
-		//alert("${sessionScope.productId}" != "${param.id}");
-		
-		
-		if ("${sessionScope.productId}" == "" || "${sessionScope.productId}" != "${param.id}" || "${param.parent}" != "${sessionScope.productParent}"){
+		//alert(${sessionScope.productList.size() == 0});
+		//alert("${sessionScope.productId}" + "::"+"${param.id}"+"????"+"${param.parent}" +":"+ "${sessionScope.productParent}");
+		if ("${sessionScope.productCId}" == "" || "${sessionScope.productCId}" != "${param.id}" || "${param.parent}" != "${sessionScope.productParent}"){
 				window.location.href='getProduct?id=${param.id}&parent=${param.parent}';
 		}
 		
 		
-		/*
-		alert(${param.cid});
-		if (${param.cid} != null && ${param.cid} != ""){
-			alert("可以");
-		} else {
-			alert("调用全部");
-		}
-		*/
-		/*
-		if (${requestScope.id ==""} || ${requestScope.id == null} ){
-			window.location.href='index.jsp?id=all';
-		} else{
-			window.location.href='index.jsp?id=${requestScope.id}';
-		}
-		*/
+		
 	});
 </script>
+<p id="pretitle">${sessionScope.productCId}</p>
 <title>易买网</title>
 </head>
 <body>
@@ -70,6 +55,10 @@
 			<div class="price-off">
 				<h2>商品展示</h2>
 				<ul class="product clearfix">
+				<c:if test="${sessionScope.productList.size() == 0}">
+					<li><h1>该分类暂无商品!</h1></li>
+				</c:if>
+				
 				<c:forEach items="${sessionScope.productList}" var="product">
 					<li>
 						<dl>
@@ -83,31 +72,6 @@
 						</dl>
 					</li>
 				</c:forEach>
-
-
-					<li>
-						<dl>
-							<dt>
-								<a href="#" target="_self"><img src="images/product/0.jpg" /></a>
-							</dt>
-							<dd class="title">
-								<a href="#" target="_self">商品名称</a>
-							</dd>
-							<dd class="price">￥12.34</dd>
-						</dl>
-					</li>
-
-					<li>
-						<dl>
-							<dt>
-								<a href="#" target="_self"><img src="images/product/0.jpg" /></a>
-							</dt>
-							<dd class="title">
-								<a href="#" target="_self">商品名称</a>
-							</dd>
-							<dd class="price">￥12.34</dd>
-						</dl>
-					</li>
 
 				</ul>
 

@@ -32,4 +32,11 @@ public interface ProductDAO {
 	 * @return
 	 */
 	List<Product_Category> getCategory(int id);
+	
+	/**
+	 * 根据分类的id获取该分类
+	 * @param id
+	 * @return
+	 */
+	Product_Category  getCategoryName(int id);
 }

@@ -17,11 +17,18 @@ public interface ProductService {
 	List<Product> getProduct(String whatId, int id);
 
 	/**
-	 * 获取某一类的分类名
+	 * 获取某一类的分类
 	 * @param id
 	 * @return
 	 */
 	List<Product_Category> getCategory(int id);
+	
+	/**
+	 * 根据分类的id获取该分类名字
+	 * @param id
+	 * @return
+	 */
+	String  getCategoryName(int id);
 	
 	
 }

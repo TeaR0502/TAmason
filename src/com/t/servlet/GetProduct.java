@@ -38,7 +38,10 @@ public class GetProduct extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("获取商品中...");
 		String idString;
-		String url = "index.jsp?";
+		String url = "index.jsp?"+request.getQueryString();
+		//System.out.println(url);
+		
+		
 		List<Product> productslist = null;
 		String parent = request.getParameter("parent");
 		// System.out.println("获取商品中..." + parent);
@@ -46,18 +49,15 @@ public class GetProduct extends HttpServlet {
 				|| request.getParameter("id").equals("all")) {
 			String id = "all";
 			idString = id;
+			url = "index.jsp?id=all";
 			// System.out.println(idString);
-			url += "id=" + idString;
-
 			productslist = ProductServiceimpl.getNew().getProduct("all", 0);
 		} else {
 			int id = Integer.parseInt(request.getParameter("id"));
 			idString = Integer.toString(id);
 			// System.out.println(idString);
-			url += "id=" + idString;
 			if (parent != null && parent.equals("true")) {
 				System.out.println("是父类商品!");
-				url += "&parent=true";
 				productslist = ProductServiceimpl.getNew().getProduct("parentId", id);
 			} else {
 				productslist = ProductServiceimpl.getNew().getProduct("childId", id);
@@ -67,10 +67,12 @@ public class GetProduct extends HttpServlet {
 			// System.out.println(idString);
 			HttpSession session = request.getSession();
 			session.setAttribute("productParent", parent);
-			session.setAttribute("productId", idString);
+			session.setAttribute("productCId", idString);
 			session.setAttribute("productList", productslist);
 		}
 		response.sendRedirect(url);
+		
+		
 	}
 
 }

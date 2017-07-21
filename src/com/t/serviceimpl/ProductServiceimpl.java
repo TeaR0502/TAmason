@@ -59,4 +59,10 @@ public class ProductServiceimpl implements ProductService {
 		return productslist;
 	}
 
+	@Override
+	public String getCategoryName(int id) {
+		
+		return  productDAOimpl.getCategoryName(id).getName();
+	}
+
 }
