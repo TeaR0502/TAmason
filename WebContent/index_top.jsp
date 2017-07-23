@@ -2,6 +2,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script type="text/javascript" src="scripts/index-top.js"></script>
+<script type="text/javascript">
+	$(function(){
+		if("${sessionScope.username }" != null && "${sessionScope.username }" != ""){
+			$("#right").show(1500);
+		}
+	});
+</script>
 <div id="header" class="wrap">
 	<div id="logo">
 		<img src="images/logo.gif" />
@@ -18,7 +25,7 @@
 				<li>欢迎用户 <span class="UserStyle">
 						${sessionScope.username} </span>回到易购商城!
 					<ul id="myStyleli">
-						<li><a href="#" class="shopping">购物车</a> <a href="#">留言</a> <a
+						<li><a href="shopping.jsp" class="shopping">购物车</a> <a href="#">留言</a> <a
 							href="exitServlet">退出</a></li>
 					</ul>
 				</li>

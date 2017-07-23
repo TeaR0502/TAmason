@@ -1,5 +1,4 @@
 // JavaScript Document
-
 //获取商品信息
 function getPorduct(id) {
 	//
@@ -24,7 +23,6 @@ function getPorduct(id) {
 				$("#textstock").html(data.stock);
 				getPorductCategoryName(data.parent_id,"product-list");
 				getPorductCategoryName(data.child_id,"productChild-list");
-				
 			}
 		},
 		error : function() {

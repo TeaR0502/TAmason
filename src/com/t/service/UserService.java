@@ -4,6 +4,15 @@ import java.text.ParseException;
 
 public interface UserService {
 	
+	
+	/**
+	 * 根据用户名查询ID
+	 * @param name
+	 * @return
+	 */
+	int queryUserId(String name);
+	
+	
 	/**
 	 * 根据用户名和密码改修用户信息
 	 * @param username

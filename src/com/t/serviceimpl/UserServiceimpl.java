@@ -93,4 +93,10 @@ public class UserServiceimpl implements UserService {
 		return userDAOimpl.updatePassword(username, password) == 1 ? true:false;
 	}
 
+	@Override
+	public int queryUserId(String name) {
+		//System.out.println(name);
+		return userDAOimpl.queryByName(name).getId();
+	}
+
 }

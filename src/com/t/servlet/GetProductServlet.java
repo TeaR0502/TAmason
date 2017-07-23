@@ -1,15 +1,21 @@
 package com.t.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
+import com.t.bean.Cart;
 import com.t.bean.Product;
 import com.t.serviceimpl.ProductServiceimpl;
 
@@ -41,11 +47,41 @@ public class GetProductServlet extends HttpServlet {
 		if (request.getParameter("action").equals("getProductById")) {
 			GetProductById(request, response);
 		}
-		
+		if (request.getParameter("action").equals("getShoppingProduct")) {
+			GetShoppingProduct(request, response);
+		}
 		
 	}
 
 	
+	private void GetShoppingProduct(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException  {
+		HttpSession session = request.getSession();
+		
+		Map<Integer, Cart> cartMap = (Map<Integer, Cart>) session.getAttribute("CartMap");
+		List<Product> productsList = new ArrayList<>();
+		if (cartMap.size() > 0) {
+			Set<Integer> keySet = cartMap.keySet();  
+			//有了Set集合就可以获取其迭代器，取值  
+	        Iterator<Integer> it = keySet.iterator();  
+	        while (it.hasNext())  
+	        {  
+	        	Product product = new Product();
+	            Integer i = it.next();
+	            Cart cart = cartMap.get(i);
+	            product = ProductServiceimpl.getNew().getProduct("id", i);
+	            product.setStock(cart.getQuantity());
+	            productsList.add(product);
+	        } 
+	        String strlist = JSON.toJSONString(productsList);
+	        System.out.println(strlist);
+	        response.getWriter().write(strlist);
+		}else {
+			response.getWriter().write("");
+		}
+		
+	}
+
 	//获取商品详细信息
 	private void GetProductById(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

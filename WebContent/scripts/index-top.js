@@ -7,4 +7,6 @@ $(function(){
 	$("#myStyle").mouseout(function(){
 		$("#myStyleli").stop().hide(1000);
 	});
+	
+
 })

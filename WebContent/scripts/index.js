@@ -1,6 +1,8 @@
 // JavaScript Document
 
 function getOnLoad(id, parent, page) {
+	
+	
 	//下一页按钮
 	$("#endPage").click(function() {
 		if (page == ""){

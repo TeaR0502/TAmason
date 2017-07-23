@@ -17,6 +17,8 @@
 		var parent= "${param.parent}";
 		var page= "${param.page}";
 		getOnLoad(id,parent,page);
+
+		
 	});
 </script>
 <title>易买网</title>
@@ -110,6 +112,23 @@
 				</ul>
 			</div>
 		</div>
+
+
+		<div id="right" class="#myStyle hide" align="center" >
+			<br><br><br><br><br><br><br><br><br><br>
+			
+			<hr>
+			<h1>我的购物车</h1>
+			<hr>
+			
+			
+			<div id="myCart" class="msg">
+				<c:if test=""></c:if>
+			</div>
+			
+			
+		</div>
+		
 		<div class="clear"></div>
 	</div>
 	<div id="footer">Copyright &copy; 2017 TeaR All Rights Reserved</div>
