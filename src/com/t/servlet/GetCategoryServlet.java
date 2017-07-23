@@ -19,7 +19,7 @@ import com.t.serviceimpl.ProductServiceimpl;
  * Servlet implementation class GetCategory
  */
 @WebServlet("/getCategory")
-public class GetCategory extends HttpServlet {
+public class GetCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
@@ -38,20 +38,38 @@ public class GetCategory extends HttpServlet {
 			getFirstCategory(request, response);
 		} 
 		if (request.getParameter("action").equals("getName")) {
-			System.out.println("准备获取名字");
+		//	System.out.println("准备获取名字");
 			getCategoryName(request, response);
+		} 
+		if (request.getParameter("action").equals("getNumber")) {
+		//	System.out.println("准备获取该类商品数量");
+			getProductNumber(request, response);
 		} 
 		
 	}
 	
+	private void getProductNumber(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
+		Integer rows = 0;
+		if (request.getParameter("id") == null || request.getParameter("id").equals("")) {
+			rows = ProductServiceimpl.getNew().getProductNumber("all", 0);
+		} else if (request.getParameter("parent").equals("true") ) {
+			rows = ProductServiceimpl.getNew().getProductNumber("parentId", Integer.parseInt(request.getParameter("id")));
+		} else {
+			rows = ProductServiceimpl.getNew().getProductNumber("childId", Integer.parseInt(request.getParameter("id")));
+		}
+	//	System.out.println(rows);
+		response.getWriter().write(rows.toString());
+		
+	}
+
 	private void getCategoryName(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String title= request.getParameter("cid");
-		if (title.equals("all")) {
+		String title= request.getParameter("id");
+		if ( title == null || title.equals("") ||title.equals("all")) {
 			title = "首页";
 		} else {
-			title =ProductServiceimpl.getNew().getCategoryName(Integer.parseInt(request.getParameter("cid")));
+			title =ProductServiceimpl.getNew().getCategoryName(Integer.parseInt(request.getParameter("id")));
 		}
-		System.out.println(title);
+		//System.out.println(title);
 		response.getWriter().write(title);
 	}
 
@@ -65,6 +83,16 @@ public class GetCategory extends HttpServlet {
 		
 	}
 	
+	void getCategoryProductNumber(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String title= request.getParameter("id");
+		if ( title == null || title.equals("") ||title.equals("all")) {
+			title = "首页";
+		} else {
+			title =ProductServiceimpl.getNew().getCategoryName(Integer.parseInt(request.getParameter("id")));
+		}
+		response.getWriter().write(title);
+		
+	}
 	
 	
 

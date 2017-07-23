@@ -9,6 +9,13 @@ public class Product {
 	private int parent_id;
 	private int child_id;
 	private String pictureFile_name;
+	private int rn ;//自然排序
+	public int getRn() {
+		return rn;
+	}
+	public void setRn(int rn) {
+		this.rn = rn;
+	}
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -62,7 +69,7 @@ public class Product {
 		this.pictureFile_name = pictureFile_name;
 	}
 	public Product(int id, String name, String description, double price, int stock, int parent_id, int child_id,
-			String pictureFile_name) {
+			String pictureFile_name, int rn) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -72,14 +79,14 @@ public class Product {
 		this.parent_id = parent_id;
 		this.child_id = child_id;
 		this.pictureFile_name = pictureFile_name;
+		this.rn = rn;
 	}
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price + ", stock="
 				+ stock + ", parent_id=" + parent_id + ", child_id=" + child_id + ", pictureFile_name="
-				+ pictureFile_name + "]";
+				+ pictureFile_name + ", rn=" + rn + "]";
 	}
-
 	
 	
 	

@@ -13,17 +13,12 @@
 <script type="text/javascript" src="scripts/index.js"></script>
 <script type="text/javascript">
 	$(function(){
-		//alert(${sessionScope.productList.size() == 0});
-		//alert("${sessionScope.productId}" + "::"+"${param.id}"+"????"+"${param.parent}" +":"+ "${sessionScope.productParent}");
-		if ("${sessionScope.productCId}" == "" || "${sessionScope.productCId}" != "${param.id}" || "${param.parent}" != "${sessionScope.productParent}"){
-				window.location.href='getProduct?id=${param.id}&parent=${param.parent}';
-		}
-		
-		
-		
+		var id = "${param.id}";
+		var parent= "${param.parent}";
+		var page= "${param.page}";
+		getOnLoad(id,parent,page);
 	});
 </script>
-<p id="pretitle">${sessionScope.productCId}</p>
 <title>易买网</title>
 </head>
 <body>
@@ -55,43 +50,18 @@
 			<div class="price-off">
 				<h2>商品展示</h2>
 				<ul class="product clearfix">
-				<c:if test="${sessionScope.productList.size() == 0}">
-					<li><h1>该分类暂无商品!</h1></li>
-				</c:if>
-				
-				<c:forEach items="${sessionScope.productList}" var="product">
-					<li>
-						<dl>
-							<dt>
-								<a href="#" target="_self"><img src="images/product/0.jpg" /></a>
-							</dt>
-							<dd class="title">
-								<a href="#" target="_self">${product.getName()}</a>
-							</dd>
-							<dd class="price">￥12.34</dd>
-						</dl>
-					</li>
-				</c:forEach>
-
+					<div id="showProduct"></div>
 				</ul>
 
 				<div class="pager">
-					<ul class="clearfix">
-						<li><a href="#">上一页</a></li>
-
-
-						<li>2</li>
-
-
-						<li><a href="#">3</a></li>
-
-
-						<li><a href="#">下一页</a></li>
+					<ul class="clearfix" id="pageUl" >
+						<li id = "startPage"><a>上一页</a></li>
+						<li id = "endPage"><a>下一页</a></li>
 					</ul>
 				</div>
 
 			</div>
-
+	
 			<div class="side">
 				<%@ include file="index_news.jsp"%>
 			</div>

@@ -9,12 +9,29 @@ public interface ProductService {
 	
 	
 	/**
+	 * 查找相对应的商品并返回一个Product类对象
+	 * @param choice 条件列
+	 * @param id 值
+	 * @return
+	 */
+	Product getProduct(String choice, int id);
+	
+	/**
+	 * 通过匹配父类ID或者子类ID来获取一个Product类的数量
+	 * @param whatId
+	 * @param id
+	 * @return
+	 */
+	int getProductNumber(String whatId, int id);
+	
+	
+	/**
 	 * 通过匹配父类ID或者子类ID来获取一个Product类的List集合
 	 * @param whatId
 	 * @param id
 	 * @return
 	 */
-	List<Product> getProduct(String whatId, int id);
+	List<Product> getProduct(String whatId, int id,int page);
 
 	/**
 	 * 获取某一类的分类

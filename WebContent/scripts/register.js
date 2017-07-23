@@ -21,8 +21,7 @@ $(function(){
 			dataType:"html",
 			success:function(data){
 					if (data == 1){
-
-						setTimeout(window.location.href='index.jsp',5000);
+						window.location.href='reg-result.jsp';
 					} else if (data == 0){
 						$("#registerresult").html("注册失败!");
 						$("#registerresult").css({"color":"red"});

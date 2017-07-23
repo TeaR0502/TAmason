@@ -40,17 +40,17 @@ public class ProductServiceimpl implements ProductService {
 	}
 
 	@Override
-	public List<Product> getProduct(String whatId, int id) {
+	public List<Product> getProduct(String whatId, int id,int page) {
 		List<Product> productslist = null;
 		switch (whatId) {
 		case "parentId":
-			productslist = productDAOimpl.getProductByPID(id);
+			productslist = productDAOimpl.getProductByPID(id,page);
 			break;
 		case "childId":
-			productslist = productDAOimpl.getProductByCID(id);
+			productslist = productDAOimpl.getProductByCID(id,page);
 			break;
 		case "all":
-			productslist = productDAOimpl.getAllProduct();
+			productslist = productDAOimpl.getAllProduct(page);
 			break;
 
 		default:
@@ -63,6 +63,41 @@ public class ProductServiceimpl implements ProductService {
 	public String getCategoryName(int id) {
 		
 		return  productDAOimpl.getCategoryName(id).getName();
+	}
+
+	@Override
+	public int getProductNumber(String whatId, int id) {
+		int count = 0;
+		switch (whatId) {
+		case "parentId":
+			count = productDAOimpl.getProductNumberByParentId(id);
+			break;
+		case "childId":
+			count = productDAOimpl.getProductNumberByChildId(id);
+			break;
+		case "all":
+			count = productDAOimpl.getAllProductNumber();
+			break;
+
+		default:
+			break;
+		}
+		return count;
+	}
+
+	@Override
+	public Product getProduct(String choice, int id) {
+		Product product = null;
+		switch (choice) {
+		case "id":
+			product = productDAOimpl.getProductById(id);
+			break;
+
+
+		default:
+			break;
+		}
+		return product;
 	}
 
 }
