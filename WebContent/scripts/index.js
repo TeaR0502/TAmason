@@ -2,7 +2,36 @@
 
 function getOnLoad(id, parent, page) {
 	
-	//获取商品分类信息
+	//获取新闻列表
+	//
+	$.ajax({
+		url : "newsServlet?action=getAll",
+		data : {
+		},
+		type : "post",
+		dataType : "json",
+		success : function(data) {
+			if (data == ""){
+				alert("获取失败,请刷新重试");
+			} else {
+				temp ="";
+				for (var i = 0; i < data.length; i++){
+					temp += "<li><a href='news_view.jsp?id="+data[i].id+"'>"+data[i].title+"</a></li>"
+				}
+				/*
+				<li>
+				<a href="#">新闻标题</a>
+				</li>
+				*/
+				$("#newsul").html(temp);
+			}
+		},
+		error : function() {
+			// alert("请刷新页面!");
+		}
+	});
+	//
+	
 	
 	
 	//下一页按钮

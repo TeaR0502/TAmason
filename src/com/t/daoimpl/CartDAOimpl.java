@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 
 import com.t.bean.Cart;
-import com.t.bean.Product_Category;
 import com.t.dao.CartDAO;
 import com.t.jdbc.JdbcUtil;
 

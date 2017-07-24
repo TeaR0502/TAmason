@@ -1,14 +1,10 @@
 package com.t.servlet;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +37,7 @@ public class AddCartServlet extends HttpServlet {
 		//System.out.println("成功访问该SERVLET");
 		if("addCart".equals(request.getParameter("action"))) {
 			
-			AddCartServlet(request,response);
+			Add2CartServlet(request,response);
 		} 
 		if ("deleteCart".equals(request.getParameter("action"))) {
 			deleteCartServlet(request,response);
@@ -127,7 +123,7 @@ public class AddCartServlet extends HttpServlet {
 		}
 		
 
-	private void AddCartServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+	private void Add2CartServlet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		try {
 			//System.out.println("成功访问该ADDCART");
 			Integer status = 0;

@@ -4,7 +4,7 @@ $(function(){
 	
 	//提交注册信息并返还注册结果
 	$("#submittd").click(function(){
-
+		
 		//
 		$.ajax({
 			url:"registerServlet",

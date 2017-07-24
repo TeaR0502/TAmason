@@ -1,20 +1,16 @@
 package com.t.servlet;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.alibaba.fastjson.JSON;
 import com.t.bean.Product_Category;
 import com.t.serviceimpl.ProductServiceimpl;
 
@@ -78,6 +74,8 @@ public class GetCategoryServlet extends HttpServlet {
 		response.getWriter().write(title);
 	}
 
+	
+	
 	void getFirstCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		List<Product_Category> list = (List<Product_Category>) session.getAttribute("firstCategory");
@@ -100,9 +98,11 @@ public class GetCategoryServlet extends HttpServlet {
 				 }
 				
 			 }
+			 /*
 			 for (Product_Category product_Category : secList) {
 				System.out.println(product_Category.getName());
 			 }
+			 */
 			 
 		}
 		session.setAttribute("firstCategory", list);

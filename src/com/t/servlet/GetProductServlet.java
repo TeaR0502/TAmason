@@ -62,7 +62,6 @@ public class GetProductServlet extends HttpServlet {
 		int userId = UserServiceimpl.getNew().queryUserId(username);
 		
 		
-		HttpSession session = request.getSession();
 		
 		Map<Integer, Cart> cartMap = CartServiceimpl.getNew().getAllCart(userId);
 		
