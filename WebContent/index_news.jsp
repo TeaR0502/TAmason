@@ -17,19 +17,3 @@
 		
 	</ul>
 </div>
-<div class="news-list">
-	<h4>
-		新闻动态
-	</h4>
-	
-	<ul>
-		
-			<li>
-				<a href="#">新闻标题</a>
-			</li>
-			<li>
-				<a href="#">新闻标题</a>
-			</li>
-		
-	</ul>
-</div>

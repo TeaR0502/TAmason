@@ -1,6 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <div class="box">
+	<div id = "productList" >
+	
+	</div>
 	<h2>
 		商品分类
 	</h2>

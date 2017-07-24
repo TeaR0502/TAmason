@@ -7,7 +7,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>易买网 - 首页</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="scripts/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
+<script type="text/javascript" src="scripts/productlist.js"></script>
+<script type="text/javascript" >
+	$(function() {
+		var 
+	});
+</script>
 </head>
 <body>
 <%@ include file="index_top.jsp"  %>

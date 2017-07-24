@@ -2,6 +2,8 @@
 
 function getOnLoad(id, parent, page) {
 	
+	//获取商品分类信息
+	
 	
 	//下一页按钮
 	$("#endPage").click(function() {
