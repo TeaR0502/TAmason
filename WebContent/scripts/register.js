@@ -2,12 +2,15 @@
 $(function(){
 	
 	
+	
+	
+	
 	//提交注册信息并返还注册结果
 	$("#submittd").click(function(){
 		
 		//
 		$.ajax({
-			url:"registerServlet",
+			url:"registerServlet?action=register",
 			data:{"username":$("#userName").val(),
 				"password":$("#passWord").val(),
 				"sex":$("input[name='sex']:checked").val(),
@@ -37,12 +40,42 @@ $(function(){
 		//
 	});
 	
+	
+	//判断邮箱是否已经注册!
+	$("#email").blur(function() {
+		//
+		$.ajax({
+			url:"registerServlet?action=email",
+			data:{"email":$("#email").val()},
+			type:"post",
+			dataType:"html",
+			success:function(data){
+					if (data == 0){
+						$("#uEmail").html("该邮箱可以使用");
+						$("#uEmail").css({"color":"green"});
+						$("#uEmail").show(500);
+					} else if (data == 1){
+						$("#uEmail").html("该邮箱已经被注册!");
+						$("#uEmail").css({"color":"red"});
+						$("#uEmail").show(500);
+					} else{
+						alert("请刷新页面!");
+					}
+					 
+			},
+			error:function(){
+				alert("请刷新页面!");
+			}
+		})
+		//
+	});
+	
 	//判断用户名是否存在
 	$("#userName").blur(function(){
 
 		//
 		$.ajax({
-			url:"registerServlet?User=User",
+			url:"registerServlet??action=name",
 			data:{"username":$("#userName").val()},
 			type:"post",
 			dataType:"html",

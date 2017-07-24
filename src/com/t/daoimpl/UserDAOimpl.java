@@ -90,4 +90,17 @@ public class UserDAOimpl implements UserDAO {
 		return jdbcTemplate.update(sql,password,username);
 	}
 
+	@Override
+	public Users queryUserByEmail(String email) {
+		String sql = "SELECT * FROM tuser WHERE EMAIL = ?";
+		List<Users> list = jdbcTemplate.query(sql,new Object[] {email} ,
+				ParameterizedBeanPropertyRowMapper.newInstance(Users.class));
+		Users users = null;
+		if (list != null && list.size() > 0) {
+			users = list.get(0);
+		} 
+		
+		return users;
+	}
+
 }

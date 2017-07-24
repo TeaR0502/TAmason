@@ -5,6 +5,13 @@ import com.t.bean.Users;
 public interface UserDAO {
 	
 	/**
+	 * 根据email查询用户
+	 * @param email
+	 * @return
+	 */
+	Users queryUserByEmail(String email);
+	
+	/**
 	 * 根据用户名修改用户密码
 	 * @param username
 	 * @param password

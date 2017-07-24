@@ -24,17 +24,34 @@ public class RegisterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//System.out.println("接到请求");
-		if (req.getParameter("User") == null || req.getParameter("User").equals("")) {
+		if ("register".equals(req.getParameter("action"))) {
 			try {
 				this.doRegister(req,resp);
 			} catch (ParseException e) {
 				System.out.println("生日转换出现异常");
 			}
-		} else if (req.getParameter("User").equals("User")) {
+		} 
+		
+		if ("name".equals(req.getParameter("action"))) {
 			this.doRegisterUsername(req, resp);
+		}
+		
+		if ("email".equals(req.getParameter("action"))) {
+			doRegisterEmail(req, resp);
 		}
 	}
 	
+	
+	private void doRegisterEmail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String email = req.getParameter("email");
+		Integer status = -1;
+		if (UserServiceimpl.getNew().judgeEmail(email)) {
+			status = 0;//可以使用
+		} else {
+			status = 1;//邮箱已经存在
+		}
+		resp.getWriter().write(status.toString());
+	}
 	
 	private void doRegister(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ParseException {
 		String username = req.getParameter("username");

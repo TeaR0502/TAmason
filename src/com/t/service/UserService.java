@@ -38,6 +38,13 @@ public interface UserService {
 	boolean judgeUsernanme(String name);
 	
 	/**
+	 * 根据email判断用户是否存在
+	 * @param name
+	 * @return 
+	 */
+	boolean judgeEmail(String email);
+	
+	/**
 	 * 根据用户输入的账号密码进行登录判断
 	 * @param username
 	 * @param password

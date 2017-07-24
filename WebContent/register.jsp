@@ -51,7 +51,7 @@
 					</tr>
 					<tr>
 						<td class="field">电子邮件：</td>
-						<td><input class="text" type="text" id="email" name="email" onfocus="FocusItem(this)" onblur="CheckItem(this);" /><span></span></td>
+						<td><input class="text" type="text" id="email" name="email" onfocus="FocusItem(this)" onblur="CheckItem(this);" /><span id="uEmail"></span></td>
 					</tr>
 					<tr>
 						<td class="field">手机：</td>

@@ -70,6 +70,12 @@ public class UserServiceimpl implements UserService {
 		Integer rows = userDAOimpl.addUser(users);
 		return rows;
 	}
+	
+	@Override
+	public boolean judgeEmail(String email) {
+		Users users = UserDAOimpl.getNew().queryUserByEmail(email);
+		return users == null ? true:false;
+	}
 
 	@Override
 	public boolean judgeUsernanme(String name) {
