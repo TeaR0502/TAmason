@@ -1,7 +1,10 @@
 package com.t.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,6 +40,7 @@ public class GetCategoryServlet extends HttpServlet {
 		if (request.getParameter("action").equals("get0")) {
 			getFirstCategory(request, response);
 		} 
+		
 		if (request.getParameter("action").equals("getName")) {
 		//	System.out.println("准备获取名字");
 			getCategoryName(request, response);
@@ -48,6 +52,7 @@ public class GetCategoryServlet extends HttpServlet {
 		
 	}
 	
+
 	private void getProductNumber(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException  {
 		Integer rows = 0;
 		if (request.getParameter("id") == null || request.getParameter("id").equals("")) {
@@ -75,10 +80,33 @@ public class GetCategoryServlet extends HttpServlet {
 
 	void getFirstCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if (session.getAttribute("firstCategory") == null) {
-			List<Product_Category> list = ProductServiceimpl.getNew().getCategory(0);
-			session.setAttribute("firstCategory", list);
+		List<Product_Category> list = (List<Product_Category>) session.getAttribute("firstCategory");
+		List<Product_Category> secList = (List<Product_Category>) session.getAttribute("secCategory");
+		if ( list == null || secList == null || list.size() == 0 || secList.size() == 0 ) {
+			secList = new LinkedList<>();
+			list = new LinkedList<>();
+			
+			//获取所有的父类ID
+			list = ProductServiceimpl.getNew().getCategory(0);
+			
+			
+			//获取对应的子类ID
+			
+			 for (Product_Category product_Category : list) {
+				 List<Product_Category> temp;
+				 temp = ProductServiceimpl.getNew().getCategory(product_Category.getId());
+				 if (temp != null) {
+					 secList.addAll(temp);
+				 }
+				
+			 }
+			 for (Product_Category product_Category : secList) {
+				System.out.println(product_Category.getName());
+			 }
+			 
 		}
+		session.setAttribute("firstCategory", list);
+		session.setAttribute("secCategory", secList);
 		response.sendRedirect("index.jsp");
 		
 	}

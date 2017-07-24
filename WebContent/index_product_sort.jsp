@@ -1,32 +1,24 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
-<div class="box">
-	<div id = "productList" >
-	
-	</div>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script type="text/javascript" src="scripts/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="scripts/sortList.js"></script>
+<div class="box" id="fl">
 	<h2>
 		商品分类
 	</h2>
-	<dl>
+	<c:forEach items="${sessionScope.firstCategory}" var="category">
+		<dl name = "${category.getId()}">
+		<dt>
+		<a href="index.jsp?id=${category.getId()}&parent=true" name="${category.getId()}">${category.getName()}</a>
 		
-		<dt>商品名称1</dt>
-		
-		<dd>
-			<a href="#">商品名称11</a>
-		</dd>
-		<dd>
-			<a href="#">商品名称12</a>
-		</dd>
-		
-		<dt>商品名称2</dt>
-		
-		<dd>
-			<a href="#">商品名称21</a>
-		</dd>
-		<dd>
-			<a href="#">商品名称22</a>
-		</dd>
-		
-		
-	</dl>
+		<c:forEach items="${sessionScope.secCategory}" var="item">
+			<c:if test="${item.parent_id == category.id}">
+				<dd>
+					<a href="product-list?id=${item.id}">${item.name}</a>
+				</dd>
+			</c:if>
+			
+		</c:forEach>
+		</dl>
+	</c:forEach>
 </div>
