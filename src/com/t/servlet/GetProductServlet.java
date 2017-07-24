@@ -3,6 +3,7 @@ package com.t.servlet;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -96,6 +97,7 @@ public class GetProductServlet extends HttpServlet {
 	private void GetProductById(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		int id = -1;
+	
 		try {
 			id = Integer.parseInt(request.getParameter("id"));
 			if (id <= 0) {
@@ -106,6 +108,49 @@ public class GetProductServlet extends HttpServlet {
 			response.sendRedirect("index.jsp");
 		}
 		Product product = ProductServiceimpl.getNew().getProduct("id", id);
+		//System.out.println(product);
+		
+		//记录浏览的商品
+		HttpSession session = request.getSession();
+		List<Product> products = (List<Product>) session.getAttribute("lastView");
+		List<Product> newProducts = new LinkedList<>();
+		boolean status = true;
+
+		if (products != null) {
+			
+			//是否有重复商品
+			for (int i = 0 ;  i < products.size(); i++) {
+				if (product.getId() == products.get(i).getId()) {
+					 status = false ;
+				}
+			}
+			
+			if (products.size() < 5 || !status) {
+				for (int i = 0 ;  i < products.size(); i++) {
+					if (product.getId() == products.get(i).getId()) {
+						 status = false ;
+					}
+					newProducts.add(products.get(i));
+				}
+			} else {
+				for (int i = 1 ;  i < products.size(); i++) {
+					if (product.getId() == products.get(i).getId()) {
+						 status = false ;
+					}
+					newProducts.add(products.get(i));
+				}
+			}
+			
+		}
+		if (status) {
+			newProducts.add(product);
+		}
+		
+		session.setAttribute("lastView", newProducts);
+		
+		
+		
+		
 		String strProduct = JSON.toJSONString(product);
 		response.getWriter().write(strProduct);
 	}

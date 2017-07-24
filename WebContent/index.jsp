@@ -17,7 +17,7 @@
 		var parent= "${param.parent}";
 		var page= "${param.page}";
 		getOnLoad(id,parent,page);
-
+		//alert("${sessionScope.lastView[0].name}");
 		
 	});
 </script>
@@ -32,19 +32,15 @@
 			<div class="last-view">
 				<h2>最近浏览</h2>
 				<dl class="clearfix">
-					<dt>
-						<img style="width: 54px; height: 54px;" src="images/product/0.jpg" />
-					</dt>
-					<dd>
-						<a href="#">商品名称</a>
-					</dd>
-
-					<dt>
-						<img style="width: 54px; height: 54px;" src="images/product/0.jpg" />
-					</dt>
-					<dd>
-						<a href="#">商品名称</a>
-					</dd>
+					
+					<c:forEach items="${sessionScope.lastView}" var="item">
+						<dt>
+							<img style="width: 54px; height: 54px;" src="${item.pictureFile_name }" />
+						</dt>
+						<dd>
+							<a href="product_view.jsp?id=${item.id }">${item.name }</a>
+						</dd>
+					</c:forEach>
 				</dl>
 			</div>
 		</div>
