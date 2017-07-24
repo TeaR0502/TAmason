@@ -14,7 +14,7 @@
 		<c:forEach items="${sessionScope.secCategory}" var="item">
 			<c:if test="${item.parent_id == category.id}">
 				<dd>
-					<a href="product-list?id=${item.id}">${item.name}</a>
+					<a href="index.jsp?id=${item.id}">${item.name}</a>
 				</dd>
 			</c:if>
 			

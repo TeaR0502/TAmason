@@ -45,7 +45,12 @@ function getPorductCategoryName(id,idlist) {
 		type : "post",
 		dataType : "html",
 		success : function(data) {
-			$("#"+idlist).html("<a href='product-list.jsp?id="+id+"' >"+data+"</a>");
+			if(idlist == "product-list"){
+				$("#"+idlist).html("<a href='index.jsp?id="+id+"&parent=true' >"+data+"</a>");
+			} else{
+				$("#"+idlist).html("<a href='index.jsp?id="+id+"' >"+data+"</a>");
+			}
+			
 		},
 		error : function() {
 			// alert("请刷新页面!");
