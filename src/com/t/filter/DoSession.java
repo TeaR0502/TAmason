@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(
-		urlPatterns={"/addCartServlet","/shopping.jsp"}
+		urlPatterns={"/addCartServlet","/shopping.jsp","/shopping-result.jsp"}
 			
 				)
 

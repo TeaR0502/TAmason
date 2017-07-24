@@ -12,6 +12,12 @@
 <script type="text/javascript" src="scripts/shopping.js"></script>
 <script type="text/javascript">
 	//alert("${sesionScope.CartMap == null }");
+	//alert("data.length == 0");
+	$(function() {
+		var username = "${sessionScope.username}";
+		//alert(username);
+		getAllCart(username);
+	});
 </script>
 </head>
 <body>

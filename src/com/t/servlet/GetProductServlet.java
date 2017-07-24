@@ -17,7 +17,9 @@ import javax.servlet.http.HttpSession;
 import com.alibaba.fastjson.JSON;
 import com.t.bean.Cart;
 import com.t.bean.Product;
+import com.t.serviceimpl.CartServiceimpl;
 import com.t.serviceimpl.ProductServiceimpl;
+import com.t.serviceimpl.UserServiceimpl;
 
 /**
  * Servlet implementation class GetProduct
@@ -56,11 +58,19 @@ public class GetProductServlet extends HttpServlet {
 	
 	private void GetShoppingProduct(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException  {
+		String username = request.getParameter("username");
+		int userId = UserServiceimpl.getNew().queryUserId(username);
+		
+		
 		HttpSession session = request.getSession();
 		
-		Map<Integer, Cart> cartMap = (Map<Integer, Cart>) session.getAttribute("CartMap");
-		List<Product> productsList = new ArrayList<>();
-		if (cartMap.size() > 0) {
+		Map<Integer, Cart> cartMap = CartServiceimpl.getNew().getAllCart(userId);
+		
+		
+		
+		List<Product> productsList = new ArrayList<Product>();
+		
+		if (cartMap != null && cartMap.size() > 0) {
 			Set<Integer> keySet = cartMap.keySet();  
 			//有了Set集合就可以获取其迭代器，取值  
 	        Iterator<Integer> it = keySet.iterator();  
@@ -73,8 +83,9 @@ public class GetProductServlet extends HttpServlet {
 	            product.setStock(cart.getQuantity());
 	            productsList.add(product);
 	        } 
+	        
 	        String strlist = JSON.toJSONString(productsList);
-	        System.out.println(strlist);
+	       // System.out.println(strlist);
 	        response.getWriter().write(strlist);
 		}else {
 			response.getWriter().write("");

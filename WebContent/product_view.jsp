@@ -21,7 +21,7 @@
 			if (uid == ""){
 				setTimeout("location.href='login.jsp'", 2000);
 				alert("您还未登录!");
-			} if (id == ""){
+			} else if (id == ""){
 				alert(id);
 				alert("参数异常!!");
 			} else{
@@ -29,7 +29,7 @@
 				//alert(uid);
 					//
 					$.ajax({
-						url : "addCartServlet",
+						url : "addCartServlet?action=addCart",
 						data : {
 							"id" : id,
 							"username":uid
@@ -39,9 +39,9 @@
 						success : function(data) {
 							if (data == 1 ) {
 								$("#addResultSuccess").html("购物车添加成功!");
-								$("#addResultSuccess").show(5000);
+								$("#addResultSuccess").show(3000);
 								
-								setTimeout($("#addResultSuccess").hide(5000), 5000);
+								setTimeout($("#addResultSuccess").hide(3000), 3000);
 							} else {
 								alert("购物车添加失败!请重试");
 							}
