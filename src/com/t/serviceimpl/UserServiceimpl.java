@@ -105,4 +105,10 @@ public class UserServiceimpl implements UserService {
 		return userDAOimpl.queryByName(name).getId();
 	}
 
+	@Override
+	public Users queryUserByName(String name) {
+		
+		return  userDAOimpl.queryByName(name);
+	}
+
 }

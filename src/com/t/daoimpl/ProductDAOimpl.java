@@ -40,7 +40,7 @@ public class ProductDAOimpl implements com.t.dao.ProductDAO {
 
 	@Override
 	public List<Product_Category> getCategory(int id) {
-		String sql = "SELECT * FROM TPRODUCT_CATEGORY WHERE PARENT_ID = ?";
+		final String sql = "SELECT * FROM TPRODUCT_CATEGORY WHERE PARENT_ID = ?";
 		List<Product_Category> productList = jdbcTemplate.query(sql, new Object[] { id },
 				ParameterizedBeanPropertyRowMapper.newInstance(Product_Category.class));
 		return productList;
@@ -48,7 +48,7 @@ public class ProductDAOimpl implements com.t.dao.ProductDAO {
 
 	@Override
 	public List<Product> getProductByCID(int id, int page) {
-		String sql = "SELECT * FROM ( SELECT t.*, ROWNUM RN FROM (SELECT * FROM TPRODUCT WHERE CHILD_ID = ?) t WHERE ROWNUM <=?) WHERE RN >=?";
+		final String sql = "SELECT * FROM ( SELECT t.*, ROWNUM RN FROM (SELECT * FROM TPRODUCT WHERE CHILD_ID = ?) t WHERE ROWNUM <=?) WHERE RN >=?";
 		List<Product> productList = jdbcTemplate.query(sql, new Object[] { id, (page * 12) ,((page - 1) * 12 + 1)},
 				ParameterizedBeanPropertyRowMapper.newInstance(Product.class));
 		return productList;
@@ -56,7 +56,7 @@ public class ProductDAOimpl implements com.t.dao.ProductDAO {
 
 	@Override
 	public List<Product> getProductByPID(int id, int page) {
-		String sql = "SELECT * FROM ( SELECT t.*, ROWNUM RN FROM (SELECT * FROM TPRODUCT WHERE PARENT_ID = ?) t WHERE ROWNUM <=?) WHERE RN >=?";
+		final String sql = "SELECT * FROM ( SELECT t.*, ROWNUM RN FROM (SELECT * FROM TPRODUCT WHERE PARENT_ID = ?) t WHERE ROWNUM <=?) WHERE RN >=?";
 		List<Product> productList = jdbcTemplate.query(sql, new Object[] { id,  (page * 12) ,((page - 1) * 12 + 1)},
 				ParameterizedBeanPropertyRowMapper.newInstance(Product.class));
 		return productList;
@@ -65,7 +65,7 @@ public class ProductDAOimpl implements com.t.dao.ProductDAO {
 	@Override
 	public List<Product> getAllProduct(int page) {
 		
-		 String sql = "SELECT * FROM "
+		final  String sql = "SELECT * FROM "
 		 		+ "( SELECT A.*, ROWNUM RN  FROM (SELECT * FROM TPRODUCT) A "
 		 		+ "WHERE ROWNUM <= ?  "
 		 		+ ") "
@@ -82,7 +82,7 @@ public class ProductDAOimpl implements com.t.dao.ProductDAO {
 
 	@Override
 	public Product_Category getCategoryName(int id) {
-		String sql = "SELECT * FROM TPRODUCT_CATEGORY WHERE ID = ?";
+		final String sql = "SELECT * FROM TPRODUCT_CATEGORY WHERE ID = ?";
 		List<Product_Category> productList = jdbcTemplate.query(sql, new Object[] { id },
 				ParameterizedBeanPropertyRowMapper.newInstance(Product_Category.class));
 
@@ -91,28 +91,28 @@ public class ProductDAOimpl implements com.t.dao.ProductDAO {
 
 	@Override
 	public int getAllProductNumber() {
-		String sql = "SELECT COUNT(*) FROM TPRODUCT";
+		final String sql = "SELECT COUNT(*) FROM TPRODUCT";
 		int count= jdbcTemplate.queryForInt(sql);
 		return count;
 	}
 
 	@Override
 	public int getProductNumberByParentId(int id) {
-		String sql = "SELECT COUNT(*) FROM TPRODUCT WHERE parent_id = ?";
+		final String sql = "SELECT COUNT(*) FROM TPRODUCT WHERE parent_id = ?";
 		int count= jdbcTemplate.queryForInt(sql,new Object[] {id});
 		return count;
 	}
 
 	@Override
 	public int getProductNumberByChildId(int id) {
-		String sql = "SELECT COUNT(*) FROM TPRODUCT WHERE child_id = ?";
+		final String sql = "SELECT COUNT(*) FROM TPRODUCT WHERE child_id = ?";
 		int count= jdbcTemplate.queryForInt(sql,new Object[] {id});
 		return count;
 	}
 
 	@Override
 	public Product getProductById(int id) {
-		String sql = "SELECT * FROM TPRODUCT WHERE id = ?";
+		final String sql = "SELECT * FROM TPRODUCT WHERE id = ?";
 		Product product = null;
 		product = jdbcTemplate.queryForObject(sql,new Object[] {id},
 				ParameterizedBeanPropertyRowMapper.newInstance(Product.class));

@@ -18,6 +18,7 @@ public interface UserDAO {
 	 * @return
 	 */
 	int updatePassword(String username,String password);
+	
 	/**
 	 * 根据用户名查询用户
 	 * @param username 用户名

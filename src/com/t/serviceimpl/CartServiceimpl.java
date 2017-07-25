@@ -54,12 +54,12 @@ public class CartServiceimpl implements CartService {
 	@Override
 	public boolean updateCart(Cart cart) {
 		//System.out.println("更新数量为:"+cart.getQuantity());
-		return cartDAOimpl.updateCart(cart.getProduct_id(), cart.getQuantity()) == 1 ? true : false;
+		return cartDAOimpl.updateCart(cart.getProduct_id(), cart.getQuantity(),cart.getUserid()) == 1 ? true : false;
 	}
 
 	@Override
-	public boolean deleteCart(int productId) {
-		return cartDAOimpl.deleteCart(productId) == 1?true:false;
+	public boolean deleteCart(int productId,int userId) {
+		return cartDAOimpl.deleteCart(productId,userId) == 1?true:false;
 	}
 
 }

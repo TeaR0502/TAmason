@@ -16,6 +16,9 @@
 				if (data == null || data.length == 0) {
 					$("#reh1").html("还没有添加任何物品到购物车!");
 					$("#reh1").show(1500);
+					$("#reh1").hide(3000);
+					$("#reh1").show(4500);
+					$("#submitButten").hide();
 				} else {
 					$("#reh1").hide(0);
 					var temp = "<tr>" + "<th>商品名称</th>" + "<th>商品价格</th>"
@@ -60,12 +63,63 @@
 			error : function() {
 				$("#reh1").html("还没有添加任何物品到购物车!");
 				$("#reh1").show(1500);
+				$("#reh1").hide(3000);
+				$("#reh1").show(4500);
+				$("#submitButten").hide();
 			}
 		});
 //
 		
-		
-		
+		//结算按钮的点击事件
+		$("#submitButten").click(function() {
+			
+			//alert("11");
+			$("#rediv").hide(1500);
+			//$("#reh1").html("正在提交订单请稍候!");
+			//$("#reh1").show(3000);
+			//$("#reh1").hide(4500);
+			// ////
+			$.ajax({
+				url : "buyServlet",
+				data : {
+					"username":username
+				},
+				type : "post",
+				dataType : "html",
+				success : function(data) {
+					// alert(data);
+					// alert(data == '0');
+					if (data == 1) {
+						// alert("该用户购物车为空");
+						$("#reh1").html("该用户购物车为空");
+						$("#reh1").show(5500);
+						$("#rediv").show(7000);
+					} else if (data == 0) {
+						//alert("提交订单成功");
+						$("#reh1").html("提交订单成功!");
+						$("#reh1").show(5500);
+						
+					} else if (data == 2) {
+						//alert("数据异常");
+						$("#reh1").html("数据异常!");
+						$("#reh1").show(5500);
+						$("#rediv").show(7000);
+					} else if (data == 3) {
+						//alert("提交订单异常!");
+						$("#reh1").html("提交订单异常!!");
+						$("#reh1").show(5500);
+						$("#rediv").show(7000);
+					} 
+
+					// setTimeout($("#reh1").hide(1000), 3000);
+				},
+				error : function() {
+					$("#reh1").html("出现异常,请刷新重新");
+					$("#reh1").show(5500);
+				}
+			});
+			// ////
+		});
 		
 		
 		// 修改按钮的点击事件
@@ -99,21 +153,21 @@
 					} else if (data == 0) {
 						$("#reh1").html("修改成功");
 						$("#reh1").show(1000);
-						$("#" + productId).show(1500);
+						$("#" + productId).show(2500);
 					} else if (data == 2) {
 						$("#reh1").html("获取购物车信息失败!");
 						$("#reh1").show(1000);
-						$("#reh1").hide(2000);
+						$("#reh1").hide(2500);
 					}
 
 					// setTimeout($("#reh1").hide(1000), 3000);
 				},
 				error : function() {
 					$("#reh1").html("出现异常,请刷新重新");
-					$("#reh1").show(500);
+					$("#reh1").show(1500);
 				}
 			});
-			setTimeout($("#reh1").hide(1000), 3000);
+			setTimeout($("#reh1").hide(4000), 3000);
 			// ////
 
 		});
@@ -122,7 +176,7 @@
 		$(".deleteButten").click(function() {
 			//alert("1");
 			var productId = $(this).attr("name");
-			alert(username);
+			//alert(username);
 			// ////
 
 			$.ajax({
@@ -144,11 +198,11 @@
 						$("#" + productId).show(1500);
 					} else if (data == 0) {
 						$("#reh1").html("删除成功");
-						$("#reh1").show(1000);
+						$("#reh1").show(1500);
 
 					} else if (data == 2) {
 						$("#reh1").html("购物车中无此商品,请不要重复删除!");
-						$("#reh1").show(1000);
+						$("#reh1").show(1500);
 					}
 
 					// setTimeout($("#reh1").hide(1000), 3000);
@@ -159,7 +213,7 @@
 					$("#" + productId).show(1500);
 				}
 			});
-			setTimeout($("#reh1").hide(1000), 3000);
+			setTimeout($("#reh1").hide(3000), 3000);
 			// ////
 		});
 

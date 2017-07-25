@@ -63,7 +63,7 @@ public class UserDAOimpl implements UserDAO {
 	
 	@Override
 	public Users queryByName(String username) {
-		String sql = "SELECT * FROM tuser WHERE username = ?";
+		final String sql = "SELECT * FROM tuser WHERE username = ?";
 		Users user = null;
 		List<Users> userlist= jdbcTemplate.query(sql,new Object[] {username},ParameterizedBeanPropertyRowMapper.newInstance(Users.class));
 		if (userlist != null && userlist.size() > 0) {
@@ -74,7 +74,7 @@ public class UserDAOimpl implements UserDAO {
 
 	@Override
 	public int addUser(Users users) {
-		String sql = "insert into tuser values(SEQ_USER_ID.nextval,?,?,?,to_date(?,'yyyy-MM-dd'),?,?,?,?,1)";
+		final String sql = "insert into tuser values(SEQ_USER_ID.nextval,?,?,?,to_date(?,'yyyy-MM-dd'),?,?,?,?,1)";
 		//ID,USERNAME,PASSWORD,SEX,BIRTHDAY,IDCODE,EMAIL,MOBILE,ADDRESS,STATUS
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -86,13 +86,13 @@ public class UserDAOimpl implements UserDAO {
 
 	@Override
 	public int updatePassword(String username, String password) {
-		String sql = "UPDATE tuser SET password = ? WHERE username = ?";
+		final String sql = "UPDATE tuser SET password = ? WHERE username = ?";
 		return jdbcTemplate.update(sql,password,username);
 	}
 
 	@Override
 	public Users queryUserByEmail(String email) {
-		String sql = "SELECT * FROM tuser WHERE EMAIL = ?";
+		final String sql = "SELECT * FROM tuser WHERE EMAIL = ?";
 		List<Users> list = jdbcTemplate.query(sql,new Object[] {email} ,
 				ParameterizedBeanPropertyRowMapper.newInstance(Users.class));
 		Users users = null;

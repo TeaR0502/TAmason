@@ -2,8 +2,17 @@ package com.t.service;
 
 import java.text.ParseException;
 
+import com.t.bean.Users;
+
 public interface UserService {
 	
+	
+	/**
+	 * 用户用户名查找用户
+	 * @param name
+	 * @return
+	 */
+	Users queryUserByName(String name);
 	
 	/**
 	 * 根据用户名查询ID
@@ -22,7 +31,7 @@ public interface UserService {
 	boolean updatePassword(String username, String password);
 	
 	/**
-	 * 根据用户名,身份证,邮箱欧安端用户身份
+	 * 根据用户名,身份证,邮箱验证用户身份
 	 * @param username
 	 * @param idcode
 	 * @param email

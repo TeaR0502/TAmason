@@ -58,7 +58,7 @@ public class AddCartServlet extends HttpServlet {
 		int userid = UserServiceimpl.getNew().queryUserId(request.getParameter("username"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		int stock = Integer.parseInt(request.getParameter("stock"));
-		System.out.println("更新数量为:"+stock);
+		//System.out.println("更新数量为:"+stock);
 		HttpSession session = request.getSession();
 		Map<Integer, Cart> cartMap = CartServiceimpl.getNew().getAllCart(userid);
 		Integer status = -1;
@@ -91,7 +91,7 @@ public class AddCartServlet extends HttpServlet {
 		Map<Integer, Cart> cartMap = CartServiceimpl.getNew().getAllCart(userId);
 		Integer status = -1;
 		if (cartMap.containsKey(id)) {
-			if (CartServiceimpl.getNew().deleteCart(id)) {
+			if (CartServiceimpl.getNew().deleteCart(id,userId)) {
 				status = 0;
 				//删除成功
 			} else {

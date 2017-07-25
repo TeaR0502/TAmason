@@ -50,7 +50,7 @@ public class CartDAOimpl implements CartDAO{
 	@Override
 	public Map<Integer, Cart> getAllCart(int userId) {
 		Map<Integer, Cart> cartMap = new HashMap<>();
-		String sql = "SELECT * FROM CART WHERE USERID = ?";
+		final String sql = "SELECT * FROM CART WHERE USERID = ?";
 		List< Cart> cartList = jdbcTemplate.query(sql, new Object[] { userId },
 				ParameterizedBeanPropertyRowMapper.newInstance(Cart.class));
 		if (cartList != null && cartList.size() > 0) {
@@ -68,16 +68,22 @@ public class CartDAOimpl implements CartDAO{
 	}
 
 	@Override
-	public int updateCart(int productId, int stock) {
-		String sql = "UPDATE CART SET QUANTITY = ? WHERE PRODUCT_ID = ?";
-		return jdbcTemplate.update(sql,stock,productId);
+	public int updateCart(int productId, int stock ,int userId) {
+		final String sql = "UPDATE CART SET QUANTITY = ? WHERE PRODUCT_ID = ? and USERID = ?";
+		return jdbcTemplate.update(sql,stock,productId,userId);
 	}
 
 	@Override
-	public int deleteCart(int productId) {
+	public int deleteCart(int productId,int userId) {
 		//  DELETE FROM 表名称 WHERE 列名称 = 值 
-		String sql = "DELETE FROM CART WHERE PRODUCT_ID = ?";
-		return jdbcTemplate.update(sql,productId);
+		final 	String sql = "DELETE FROM CART WHERE PRODUCT_ID = ? and USERID = ?";
+		return jdbcTemplate.update(sql,productId,userId);
+	}
+
+	@Override
+	public int clearUserCart(int userId) {
+		final 	String sql = "DELETE FROM CART WHERE USERID = ?";
+		return jdbcTemplate.update(sql,userId);
 	}
 
 }

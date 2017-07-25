@@ -37,7 +37,7 @@
 
 			</table>
 			<h1 id= "reh1" align="center">还没有添加任何物品到购物车!</h1>
-			<div class="button"><input type="submit" value="" /></div>
+			<div class="button"><input type="button" value="" id="submitButten"/></div>
 		</form>
 	</div>
 </div>

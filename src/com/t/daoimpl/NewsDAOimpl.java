@@ -39,14 +39,14 @@ public class NewsDAOimpl implements NewsDAO {
 	
 	@Override
 	public News getNewsById(int id) {
-		String sql = "SELECT * FROM TNEWS WHERE ID = ?";
+		final String sql = "SELECT * FROM TNEWS WHERE ID = ?";
 		return jdbcTemplate.queryForObject(sql,new Object[] {id},
 				ParameterizedBeanPropertyRowMapper.newInstance(News.class));
 	}
 
 	@Override
 	public List<News> getAllNews() {
-		String sql = "SELECT * FROM TNEWS ";
+		final  String sql = "SELECT * FROM TNEWS ";
 		return jdbcTemplate.query(sql,ParameterizedBeanPropertyRowMapper.newInstance(News.class));
 	}
 

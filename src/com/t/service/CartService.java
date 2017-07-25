@@ -12,7 +12,7 @@ public interface CartService {
 	 * @param productId
 	 * @return
 	 */
-	boolean deleteCart(int productId);
+	boolean deleteCart(int productId,int userId);
 	/**
 	 * 更新购物车信息
 	 * @param cart
