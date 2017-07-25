@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2016 上海海文 All Rights Reserved.
+	Copyright &copy; 2017 TeaR All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>

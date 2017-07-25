@@ -2,6 +2,8 @@
 
 function getOnLoad(id, parent, page) {
 	
+	
+	
 	//获取新闻列表
 	//
 	$.ajax({
@@ -15,14 +17,11 @@ function getOnLoad(id, parent, page) {
 				alert("获取失败,请刷新重试");
 			} else {
 				temp ="";
+				//alert(data);
 				for (var i = 0; i < data.length; i++){
 					temp += "<li><a href='news_view.jsp?id="+data[i].id+"'>"+data[i].title+"</a></li>"
 				}
-				/*
-				<li>
-				<a href="#">新闻标题</a>
-				</li>
-				*/
+				
 				$("#newsul").html(temp);
 			}
 		},

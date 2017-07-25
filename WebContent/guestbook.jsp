@@ -4,14 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>易买网 - 首页</title>
+<title>易买网 - 留言板</title>
 <link type="text/css" rel="stylesheet" href="css/style.css" />
+<script type="text/javascript" src="scripts/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
+<script type="text/javascript" src="scripts/guestbook.js"></script>
+
 </head>
 <body>
 <%@ include file="index_top.jsp"  %>
 <div id="position" class="wrap">
-	您现在的位置：<a href="index.html">易买网</a> &gt; 在线留言
+	您现在的位置：<a href="index.jsp">易买网</a> &gt; 在线留言
 </div>
 <div id="main" class="wrap">
 	<div class="lefter">
@@ -21,32 +24,16 @@
 		<div class="guestbook">
 			<h2>全部留言</h2>
 			<ul>
-			
-				<li>
-					<dl>
-						<dt>标题：1</dt>
-						<dd class="author">作者：2</span></dd>
-						<dd>内容：3</dd>
-					</dl>
-				</li>
+				<div id="showComment">
 				
-				<li>
-					<dl>
-						<dt>标题：1</dt>
-						<dd class="author">作者：2</span></dd>
-						<dd>内容：3</dd>
-					</dl>
-				</li>
+				</div>
 				
 			</ul>
 			<div class="clear"></div>
 			<div class="pager">
 				<ul class="clearfix">
-					<li><a href="#">上一页</a></li>					
-					<li>2</li>
-					<li class="current"><a href="#">3</a></li>
-					
-					<li><a href="#">下一页</a></li>
+					<li><a id="startPage">上一页</a></li>					
+					<li><a id="endPage">下一页</a></li>
 				</ul>
 				
 			</div>
@@ -77,7 +64,7 @@
 	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2010 上海海文 All Rights Reserved. 京ICP证1000001号
+	Copyright &copy; 2017 TeaR All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>

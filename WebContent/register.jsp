@@ -76,7 +76,7 @@
 	<div class="clear"></div>
 </div>
 <div id="footer">
-	Copyright &copy; 2016 TeaR All Rights Reserved. 京ICP证1000001号
+	Copyright &copy; 2017 TeaR All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>

@@ -18,14 +18,13 @@
 		<c:if test="${sessionScope.username == null }">
 			<a href="login.jsp">登录</a>
 			<a href="register.jsp">注册</a>
-			<a href="#">留言</a>
 		</c:if>
 		<c:if test="${sessionScope.username != null }">
 			<div id="myStyle">
 				<li>欢迎用户 <span class="UserStyle">
 						${sessionScope.username} </span>回到易购商城!
 					<ul id="myStyleli">
-						<li><a href="shopping.jsp" class="shopping">购物车</a> <a href="#">留言</a> <a
+						<li><a href="shopping.jsp" class="shopping">购物车</a> <a href="guestbook.jsp">留言</a> <a
 							href="exitServlet">退出</a></li>
 					</ul>
 				</li>
