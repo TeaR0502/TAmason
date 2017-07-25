@@ -41,4 +41,10 @@ public class CommentServiceimpl implements CommentService {
 		return commentDAOimpl.getAllCommentNumber();
 	}
 
+	@Override
+	public boolean addComment(String name, String content, String title) {
+		Comment comment = new Comment(0, title, content, name, null);
+		return commentDAOimpl.addComment(comment) == 0 ? false:true;
+	}
+
 }

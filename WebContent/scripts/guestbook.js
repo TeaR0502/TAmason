@@ -1,5 +1,59 @@
 // JavaScript Document
 $(function() {
+	
+	//隐藏结果
+	$("#result").hide(0);
+	//提交按钮的事件
+	$("#submit").click(function() {
+		//alert("1");
+		var content = $("#content").val();
+		var name = $("#name").val();
+		var title = $("#title").val();
+		//alert(name);
+		//alert(title);
+		//alert(content);
+		
+		
+		
+		//
+		$.ajax({
+			url : "commentServlet?action=submit",
+			data : {
+				"name":name,
+				"title":title,
+				"content":content
+			},
+			type : "post",
+			dataType : "html",
+			success : function(data) {
+				if (data == "" || data == -1){
+					//alert("获取失败,请刷新重试");
+					$("#result").html("提交留言失败,请重试");
+					$("#result").show(1500);
+					$("#result").hide(3000);
+				} else if (data == 0){
+					$("#content").val("");
+					$("#name").val("");
+					$("#title").val("");
+					$("#result").html("留言成功!刷新查看");
+					$("#result").show(1500);
+					$("#result").hide(3000);
+				}
+			},
+			error : function() {
+				// alert("请刷新页面!");
+			}
+		});
+		//
+		
+		
+		
+		
+		
+		
+	});
+	
+	//初始化page值
 	var page = "";
 	
 	//下一页按钮

@@ -9,7 +9,6 @@
 <script type="text/javascript" src="scripts/jquery-2.1.0.js"></script>
 <script type="text/javascript" src="scripts/function.js"></script>
 <script type="text/javascript" src="scripts/guestbook.js"></script>
-
 </head>
 <body>
 <%@ include file="index_top.jsp"  %>
@@ -37,24 +36,25 @@
 				</ul>
 				
 			</div>
+			<div id="result"></div>
 			<div id="reply-box">
 				<form action="#" method="post">
 					<table>
 						<tr>
-							<td class="field">昵称：</td>
-							<td><input class="text" type="text" name="guestName" /></td>
+							<td class="field" >昵称：</td>
+							<td><input class="text" type="text" name="guestName" id="name"/></td>
 						</tr>
 						<tr>
-							<td class="field">留言标题：</td>
-							<td><input class="text" type="text" name="guestTitle" /></td>
+							<td class="field" >留言标题：</td>
+							<td><input class="text" type="text" name="guestTitle" id="title"/></td>
 						</tr>
 						<tr>
-							<td class="field">留言内容：</td>
-							<td><textarea name="guestContent"></textarea></td>
+							<td class="field" >留言内容：</td>
+							<td><textarea name="guestContent" id="content"></textarea></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
-							<td><label class="ui-blue"><input type="submit" name="submit" value="提交留言" /></label></td>
+							<td><label class="ui-blue"><input type="button" id="submit" value="提交留言" /></label></td>
 						</tr>
 					</table>
 				</form>

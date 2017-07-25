@@ -46,10 +46,24 @@ public class CommentServlet extends HttpServlet {
 		if ("getNumber".equals(request.getParameter("action"))) {
 			getNumber(request, response);
 		}
-		
+		if ("submit".equals(request.getParameter("action"))) {
+			submitComment(request, response);
+		}
 	}
 	
 	
+	private void submitComment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String name = request.getParameter("name");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		Integer status = -1;//提交失败
+		if (CommentServiceimpl.getNew().addComment(name, content, title)) {
+			status = 0;//提交成功
+		}
+		//System.out.println(status);
+		response.getWriter().write(status.toString());
+	}
+
 	private void getNumber(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Integer rows = 0;
 		rows = CommentServiceimpl.getNew().getAllCommentNumber();

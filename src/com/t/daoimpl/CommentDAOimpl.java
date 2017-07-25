@@ -1,6 +1,8 @@
 package com.t.daoimpl;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -54,6 +56,17 @@ public class CommentDAOimpl implements CommentDAO {
 		List<Comment> commentList = jdbcTemplate.query(sql, new Object[] { (page * 2) ,((page - 1) * 2 + 1)},
 				ParameterizedBeanPropertyRowMapper.newInstance(Comment.class));
 		return commentList;
+	}
+
+	@Override
+	public int addComment(Comment comment) {
+		final String sql = "INSERT INTO TCOMMENT values (SEQ_COMMENT_ID.nextval, ?, ?,to_date(?, 'yyyy-MM-dd HH24:mi:ss'), ?)";
+		
+		//获取当前系统时间
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		String stringdata = df.format(new Date());
+		int rows = jdbcTemplate.update(sql,comment.getReply(),comment.getContent(),stringdata,comment.getNick_name());
+		return rows;
 	}
 
 }
